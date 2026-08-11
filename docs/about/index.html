@@ -27,7 +27,18 @@
     }
 
     .about-hero::after {
-      content: none;
+      content: '';
+      position: absolute;
+      z-index: 2;
+      left: -8%;
+      bottom: -102px;
+      width: 116%;
+      height: 172px;
+      border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+      background: #f7f4ee;
+      transform: rotate(-.45deg);
+      transform-origin: center bottom;
+      pointer-events: none;
     }
 
     .about-wave {
@@ -35,18 +46,18 @@
       z-index: 0;
       inset: 0;
       background-image: url('../assets/about-waves.webp');
-      background-position: center;
-      background-size: 100% 100%;
+      background-position: center bottom;
+      background-size: 100% calc(100% - 44px);
       background-repeat: no-repeat;
       pointer-events: none;
     }
 
     .about-copy {
       position: absolute;
-      z-index: 1;
-      top: 78px;
-      left: 39.5%;
-      width: 700px;
+      z-index: 3;
+      top: 68px;
+      left: 52%;
+      width: min(620px, 44vw);
       margin: 0;
       padding: 0;
     }
@@ -193,8 +204,8 @@
 
     @media (max-width: 1250px) and (min-width: 801px) {
       .about-copy {
-        left: 40%;
-        width: 55vw;
+        left: 48%;
+        width: 48vw;
       }
     }
 
@@ -202,6 +213,13 @@
       .about-hero {
         height: auto;
         min-height: 820px;
+      }
+
+      .about-hero::after {
+        left: -15%;
+        bottom: -62px;
+        width: 130%;
+        height: 112px;
       }
 
       .about-wave {
