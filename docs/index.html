@@ -66,14 +66,13 @@
     .hero-transition { position: relative; z-index: 4; width: 100%; overflow: hidden; pointer-events: none; line-height: 0; isolation: isolate; }
     .hero-transition svg { display: block; width: 100%; height: 100%; fill: currentColor; transform: translate3d(0, var(--curve-shift, 0px), 0); transform-origin: center; will-change: transform; }
     .hero-transition::after { content: ""; position: absolute; z-index: 2; right: 0; bottom: 0; left: 0; background: currentColor; pointer-events: none; }
-    .hero-transition-top { height: var(--transition-top-height); margin-top: calc(var(--transition-top-height) * -1); margin-bottom: -3px; color: var(--ink-navy); animation: transition-settle-top 1.65s var(--ease) both; }
-    .hero-transition-top::after { height: 4px; }
+    .hero-transition-top { height: var(--transition-top-height); margin-top: calc(var(--transition-top-height) * -1); margin-bottom: -5px; color: var(--ink-navy); }
+    .hero-transition-top::after { height: 7px; }
     .hero-transition-bottom { height: var(--transition-bottom-height); margin-top: calc(var(--transition-bottom-height) * -1); margin-bottom: -3px; color: var(--ivory); animation: transition-settle-bottom 1.8s .08s var(--ease) both; }
     .hero-transition-bottom::after { height: 22px; }
     .transition-mobile { display: none !important; }
-    @keyframes transition-settle-top { from { opacity: .92; transform: translateY(16px) scaleY(.97); } to { opacity: 1; transform: none; } }
     @keyframes transition-settle-bottom { from { opacity: .92; transform: translateY(-14px) scaleY(.97); } to { opacity: 1; transform: none; } }
-    .hero-copy { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) 30%; gap: 22px 7vw; align-items: end; padding: clamp(72px, 7.5vw, 126px) 5vw clamp(88px, 9vw, 150px); }
+    .hero-copy { position: relative; z-index: 5; display: grid; grid-template-columns: minmax(0, 1fr) 30%; gap: 22px 7vw; align-items: end; margin-top: -4px; padding: calc(clamp(72px, 7.5vw, 126px) + 4px) 5vw clamp(88px, 9vw, 150px); background: var(--ink-navy); }
     .hero-eyebrow { grid-column: 1; grid-row: 1; }
     .hero-copy h1 { grid-column: 1; grid-row: 2; }
     .hero-support { grid-column: 2; grid-row: 1 / 3; }
