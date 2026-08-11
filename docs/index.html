@@ -56,7 +56,7 @@
 
     .hero { position: relative; z-index: 2; background: var(--ink-navy); color: var(--ivory); }
     .hero-media { display: grid; place-items: center; min-height: clamp(620px, 68vh, 820px); margin: 0; padding: 0; overflow: hidden; background: var(--ivory); }
-    .hero-artwork { position: relative; width: 100%; line-height: 0; transform-origin: center; animation: hero-scale 4.6s var(--ease) both; }
+    .hero-artwork { position: relative; width: 100%; line-height: 0; }
     .hero-artwork__video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: contain; background: var(--ivory); }
     .hero-copy { position: relative; z-index: 5; display: grid; grid-template-columns: minmax(0, 1fr) 30%; gap: 22px 7vw; align-items: end; margin: 0; padding: clamp(72px, 7.5vw, 126px) 5vw clamp(88px, 9vw, 150px); background: var(--ink-navy); }
     .hero-eyebrow { grid-column: 1; grid-row: 1; }
@@ -68,7 +68,6 @@
     .hero-support { max-width: 420px; color: #d7d3ca; font-size: 16px; line-height: 1.9; }
     .hero-service-line { margin: 24px 0 0; color: #bdb9b1; font: 400 10px/1.7 var(--mono); letter-spacing: .09em; }
     .hero .text-link { margin-top: 30px; color: var(--terracotta); font-size: 24px; }
-    @keyframes hero-scale { from { transform: scale(1.03); } to { transform: scale(1); } }
 
     .hero-eyebrow { animation: hero-in .7s .08s both; }
     .hero-copy h1 span:first-child i { animation: hero-line .85s .2s var(--ease) both; }
@@ -211,8 +210,8 @@
     <section class="hero" aria-labelledby="hero-title">
       <figure class="hero-media">
         <div class="hero-artwork">
-          <video class="hero-artwork__video" autoplay muted loop playsinline preload="metadata" poster="assets/creative-marketing-hero.png?v=2" aria-label="FUN PROJECT creative marketing team illustration">
-            <source src="assets/video/hero.mp4?v=6" type="video/mp4">
+          <video class="hero-artwork__video" autoplay muted loop playsinline preload="auto" poster="assets/creative-marketing-hero.png?v=2" aria-label="FUN PROJECT creative marketing team illustration">
+            <source src="assets/video/hero.mp4?v=8" type="video/mp4">
           </video>
         </div>
       </figure>
