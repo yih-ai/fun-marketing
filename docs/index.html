@@ -21,6 +21,35 @@
   </style>
   <style>.poster{height:auto;display:block}.poster>img{display:block;width:100%;height:auto;object-fit:initial}</style>
   <style>@media(min-width:901px){.nav .links{gap:36px;font-size:clamp(16px,1.55vw,22px)}}</style>
+  <style>
+    .editorial-section{padding:8vw 4.5vw;border-bottom:1px solid var(--line)}
+    .editorial-heading{display:grid;grid-template-columns:23% 1fr;gap:30px;align-items:end;margin-bottom:4vw}
+    .editorial-heading h2{max-width:900px;margin:0;font:500 clamp(42px,6.2vw,96px)/.9 "Playfair Display",serif;letter-spacing:-.06em}
+    .editorial-heading p{max-width:580px;margin:24px 0 0;color:#544d47;font-size:16px;line-height:1.8}
+    .philosophy-visuals{display:grid;grid-template-columns:1.55fr 1fr;gap:18px}
+    .philosophy-visuals figure,.approach-visuals figure{margin:0;overflow:hidden;background:#d8c6ad}
+    .philosophy-visuals img,.approach-visuals img{display:block;width:100%;height:100%;object-fit:cover}
+    .philosophy-visuals figure:first-child{aspect-ratio:16/10}
+    .philosophy-visuals figure:last-child{aspect-ratio:4/5}
+    .approach-story{display:grid;grid-template-columns:33% 1fr;gap:7vw;padding:8vw 4.5vw;border-bottom:1px solid var(--line);align-items:center}
+    .approach-story h2{margin:15px 0 24px;font:500 clamp(42px,5.6vw,86px)/.9 "Playfair Display",serif;letter-spacing:-.06em}
+    .approach-story p{font-size:16px;line-height:1.9;color:#544d47}
+    .approach-visuals{display:grid;grid-template-columns:1.1fr .9fr;gap:18px;align-items:end}
+    .approach-visuals figure:first-child{aspect-ratio:4/5}
+    .approach-visuals figure:last-child{aspect-ratio:1/1}
+    .sense-gallery{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;margin-top:6vw;background:#78716a;border:1px solid #78716a}
+    .sense-card{position:relative;min-height:35vw;margin:0;overflow:hidden;background:#211f1c}
+    .sense-card img{display:block;width:100%;height:100%;object-fit:cover;filter:saturate(.82)}
+    .sense-card:after{content:"";position:absolute;inset:35% 0 0;background:linear-gradient(transparent,rgba(12,10,9,.75))}
+    .sense-card span{position:absolute;z-index:1;left:18px;right:18px;bottom:18px;font:500 clamp(18px,1.8vw,28px)/1.05 "Playfair Display",serif}
+    .approach .senses{display:none}
+    @media(max-width:760px){
+      .editorial-section{padding:17vw 6vw}.editorial-heading{grid-template-columns:1fr;margin-bottom:9vw}.editorial-heading p{font-size:14px}
+      .philosophy-visuals{grid-template-columns:1fr;gap:10px}.philosophy-visuals figure:last-child{aspect-ratio:4/3}
+      .approach-story{grid-template-columns:1fr;padding:17vw 6vw;gap:9vw}.approach-story p{font-size:14px}
+      .approach-visuals{gap:8px}.sense-gallery{grid-template-columns:repeat(2,1fr);margin-top:12vw}.sense-card{min-height:65vw}.sense-card:last-child{grid-column:1/-1;min-height:90vw}
+    }
+  </style>
 </head>
 <body>
   <nav class="nav"><div class="links primary"><a href="work/">WORK</a><a href="services/">SERVICES</a></div><a class="nav-logo" href="./" aria-label="FUN PROJECT 首頁"><img src="assets/logo-nav.png" alt="FUN PROJECT"></a><div class="links secondary"><a href="about/">ABOUT</a><a href="contact/">START A PROJECT ↗</a></div><span class="menu">MENU</span></nav>
@@ -28,11 +57,13 @@
     <figure class="poster"><img src="assets/creative-marketing-hero.png?v=2" alt="Creative Marketing 團隊企劃插畫"></figure>
     <section class="intro"><div class="intro-grid"><p class="kicker">01 / FUN PROJECT</p><h1>We make brands<br>people can <em>feel.</em></h1></div></section>
     <section class="manifesto"><div class="title">Strategy, story<br>&amp; experience.</div><div class="copy">為講究品味與體驗的品牌，從策略、影像、內容、社群到實體互動，建立能被看見、被感受，也被記住的品牌存在。<br><a class="arrow" href="about/">ABOUT FUN PROJECT →</a></div></section>
+    <section class="editorial-section"><div class="editorial-heading"><p class="kicker">BRAND PHILOSOPHY</p><div><h2>A brand is remembered<br>by how it feels.</h2><p>We shape thoughtful brand worlds through clarity, atmosphere and meaningful human connection.</p></div></div><div class="philosophy-visuals"><figure><img src="assets/home/brand-philosophy/philosophy-01.png" alt="Warm architectural light expressing brand atmosphere" loading="lazy"></figure><figure><img src="assets/home/brand-philosophy/philosophy-02.png" alt="Portrait behind translucent fabric expressing a sensory brand mood" loading="lazy"></figure></div></section>
     <section class="section-head"><p class="kicker">02 / WHAT WE DO</p><h2>Ways we move<br>brands forward.</h2></section>
     <section class="service-list"><article class="service"><span>01</span><h3>Branding</h3><p>定位、命名、識別與品牌語言，讓品牌有清晰且耐看的姿態。</p></article><article class="service"><span>02</span><h3>Creative Direction</h3><p>以一致的敘事觀點，串連視覺、影像、內容與空間感受。</p></article><article class="service"><span>03</span><h3>Brand Atmosphere</h3><p>把每一個接觸點，轉化為具備記憶度的體驗。</p></article></section>
+    <section class="approach-story"><div><p class="kicker">OUR APPROACH</p><h2>From insight<br>to expression.</h2><p>Strategy gives each idea direction. Collaboration turns that direction into a brand experience people can see, feel and remember.</p><a class="arrow" href="approach/">OUR PROCESS →</a></div><div class="approach-visuals"><figure><img src="assets/home/approach/approach-01.png" alt="Hand arranging ideas during the creative process" loading="lazy"></figure><figure><img src="assets/home/approach/approach-02.png" alt="Hands connecting points to form a collaborative framework" loading="lazy"></figure></div></section>
     <section class="section-head"><p class="kicker">03 / SELECTED WORK</p><h2>Stories in<br>motion.</h2></section>
     <section class="works"><a class="work w1" href="work/eram/"><small>EXPERIENTIAL / ERAM</small><h3>ERAM</h3></a><a class="work w2" href="work/argo-yacht-club/"><small>EVENT / ARGO YACHT CLUB</small><h3>ARGO Yacht Club</h3></a><a class="work w3" href="work/le-clubhouse/"><small>BRANDING / LE CLUBHOUSE</small><h3>LE Clubhouse</h3></a></section>
-    <section class="approach"><p class="kicker">04 / OUR APPROACH</p><h2>The five senses<br>of branding.</h2><div class="senses"><div class="sense">Serenity<small>鬆弛感</small></div><div class="sense">Authenticity<small>原生感</small></div><div class="sense">Presence<small>存在感</small></div><div class="sense">Connection<small>社交感</small></div><div class="sense">Atmosphere<small>氛圍感</small></div></div></section>
+    <section class="approach"><p class="kicker">04 / OUR APPROACH</p><h2>The five senses<br>of branding.</h2><div class="sense-gallery"><figure class="sense-card"><img src="assets/home/five-senses/serenity.png" alt="Serenity" loading="lazy"><span>Serenity</span></figure><figure class="sense-card"><img src="assets/home/five-senses/authenticity.png" alt="Authenticity" loading="lazy"><span>Authenticity</span></figure><figure class="sense-card"><img src="assets/home/five-senses/presence.png" alt="Presence" loading="lazy"><span>Presence</span></figure><figure class="sense-card"><img src="assets/home/five-senses/connection.png" alt="Connection" loading="lazy"><span>Connection</span></figure><figure class="sense-card"><img src="assets/home/five-senses/atmosphere.png" alt="Atmosphere" loading="lazy"><span>Atmosphere</span></figure></div><div class="senses"><div class="sense">Serenity<small>鬆弛感</small></div><div class="sense">Authenticity<small>原生感</small></div><div class="sense">Presence<small>存在感</small></div><div class="sense">Connection<small>社交感</small></div><div class="sense">Atmosphere<small>氛圍感</small></div></div></section>
     <section class="contact"><p class="kicker">05 / START A PROJECT</p><h2>Let’s make<br>something felt.</h2><p>有一個值得被感受的想法嗎？</p><a class="button" href="contact/">START THE CONVERSATION →</a></section>
   </main>
   <footer class="footer"><span>FUN PROJECT CREATIVE CONSULTANCY</span><span>TAIPEI · TAIWAN · © 2026</span></footer>
