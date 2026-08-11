@@ -90,22 +90,24 @@
     .five-senses { background: #f0ede6; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
     .senses-heading { display: grid; grid-template-columns: 34% 1fr; margin-bottom: clamp(58px, 6vw, 92px); }
     .senses-heading h2 { max-width: 760px; }
-    .senses-carousel { --sense-size: clamp(220px, 26vw, 370px); margin-inline: -5vw; overflow: hidden; }
+    .senses-carousel { --sense-size: clamp(220px, 19vw, 292px); margin-inline: -5vw; overflow: hidden; }
     .senses-controls { display: flex; justify-content: flex-end; gap: 10px; padding: 0 5vw 24px; }
     .sense-arrow { display: grid; width: 48px; height: 48px; place-items: center; border: 1px solid rgba(23,48,70,.32); border-radius: 50%; background: transparent; color: var(--navy); font: 400 22px/1 var(--sans); cursor: pointer; transition: color .35s ease, background .35s ease, transform .35s var(--ease); }
     .sense-arrow:hover { background: var(--navy); color: var(--ivory); transform: scale(1.06); }
     .sense-arrow:focus-visible { outline: 2px solid var(--terracotta); outline-offset: 3px; }
-    .senses-track { display: flex; gap: clamp(18px, 2.5vw, 38px); overflow-x: auto; padding: clamp(26px, 3.5vw, 54px) max(5vw, calc(50vw - var(--sense-size) / 2)) clamp(36px, 5vw, 72px); scroll-snap-type: x mandatory; scroll-padding-inline: max(5vw, calc(50vw - var(--sense-size) / 2)); overscroll-behavior-inline: contain; scrollbar-width: none; cursor: grab; touch-action: pan-x pan-y; }
+    .senses-track { display: flex; gap: clamp(16px, 1.7vw, 28px); overflow-x: auto; padding: clamp(18px, 2.5vw, 38px) max(5vw, calc(50vw - var(--sense-size) / 2)) clamp(36px, 5vw, 72px); scroll-snap-type: x mandatory; scroll-padding-inline: max(5vw, calc(50vw - var(--sense-size) / 2)); overscroll-behavior-inline: contain; scrollbar-width: none; cursor: grab; touch-action: pan-x pan-y; }
     .senses-track::-webkit-scrollbar { display: none; }
     .senses-track.is-dragging { cursor: grabbing; scroll-snap-type: none; user-select: none; }
-    .sense-orbit-card { flex: 0 0 var(--sense-size); margin: 0; scroll-snap-align: center; color: var(--navy); text-align: center; opacity: .48; transform: scale(.82); transform-origin: center; transition: opacity .55s ease, transform .7s var(--ease); }
-    .sense-orbit-card.is-active { z-index: 2; opacity: 1; transform: scale(1.08); }
-    .sense-orbit-image { position: relative; width: 100%; aspect-ratio: 1; overflow: hidden; border-radius: 50%; background: #d8d2c8; box-shadow: inset 0 0 0 1px rgba(23,48,70,.12); }
+    .sense-orbit-card { flex: 0 0 var(--sense-size); margin: 0; scroll-snap-align: center; color: var(--navy); opacity: .68; transform: scale(.92); transform-origin: center; transition: opacity .55s ease, transform .7s var(--ease); }
+    .sense-orbit-card.is-active { z-index: 2; opacity: 1; transform: scale(1.035); }
+    .sense-card-heading { display: flex; min-height: 82px; flex-direction: column; justify-content: center; margin-bottom: 8px; padding: 12px 16px 13px; border: 1px solid rgba(23,48,70,.22); background: rgba(247,245,240,.46); }
+    .sense-name-cn { color: #a98774; font: 400 clamp(18px, 1.45vw, 22px)/1.2 var(--sans); letter-spacing: .04em; }
+    .sense-name-en { margin-top: 3px; color: #6f7b82; font: 400 clamp(18px, 1.5vw, 23px)/1.1 var(--serif); letter-spacing: -.015em; }
+    .sense-orbit-image { position: relative; width: 100%; aspect-ratio: 4 / 3; overflow: hidden; background: #d8d2c8; box-shadow: inset 0 0 0 1px rgba(23,48,70,.12); }
     .sense-orbit-image img { display: block; width: 100%; height: 100%; object-fit: cover; filter: saturate(.72) contrast(.94); transform: scale(1.03); transition: filter .6s ease, transform .8s var(--ease); }
     .sense-orbit-card.is-active .sense-orbit-image img { filter: none; transform: scale(1); }
-    .sense-orbit-card figcaption { display: grid; grid-template-columns: auto auto; justify-content: center; align-items: baseline; gap: 12px; padding-top: 20px; }
-    .sense-orbit-card small { color: var(--terracotta); font: 500 15px/1 var(--mono); letter-spacing: .05em; }
-    .sense-orbit-card span { font: 400 clamp(32px, 3.4vw, 52px)/.95 var(--serif); letter-spacing: -.035em; }
+    .sense-orbit-card figcaption { min-height: 76px; padding: 17px 10px 0; color: var(--body); }
+    .sense-orbit-card figcaption p { margin: 0; font-size: clamp(14px, 1.05vw, 16px); line-height: 1.55; }
 
     .approach { background: var(--ivory); }
     .approach-intro { display: grid; grid-template-columns: 35% 1fr; gap: 7vw; align-items: end; margin-bottom: clamp(70px, 8vw, 130px); }
@@ -186,7 +188,7 @@
       .mobile-nav a { padding: 20px 0; border-bottom: 1px solid rgba(247,245,240,.25); font: 400 42px/1 var(--serif); text-decoration: none; }
       .eyebrow { font-size: 17px; letter-spacing: .04em; }.hero-copy { display: block; padding: 72px 6vw 92px; }.hero-copy h1 { max-width: 100%; margin: 24px 0 34px; font-size: clamp(48px, 13.5vw, 56px); line-height: .92; }.hero-support { font-size: 14px; }.hero-service-line { font-size: 9px; }.hero .text-link { font-size: 17px; }
       .philosophy-grid { display: block; }.philosophy-media { min-height: 540px; margin-bottom: 72px; }.philosophy-media figure:first-child { inset: 0 12% 14% 0; }.philosophy-media figure:last-child { width: 48%; height: 42%; border-width: 8px; }.philosophy-copy .cn-lead { font-size: 17px; }
-      .senses-heading { display: block; margin-bottom: 36px; }.senses-heading .eyebrow { margin-bottom: 26px; }.senses-heading .display { max-width: 100%; font-size: clamp(42px, 11.8vw, 50px); line-height: .98; letter-spacing: -.045em; }.senses-carousel { --sense-size: min(68vw, 280px); margin-inline: -6vw; }.senses-controls { padding: 0 6vw 10px; }.sense-arrow { width: 42px; height: 42px; }.senses-track { gap: 16px; padding-block: 24px 42px; padding-inline: calc(50vw - var(--sense-size) / 2); scroll-padding-inline: calc(50vw - var(--sense-size) / 2); }.sense-orbit-card { transform: scale(.84); }.sense-orbit-card.is-active { transform: scale(1.04); }.sense-orbit-card span { font-size: 36px; }
+      .senses-heading { display: block; margin-bottom: 36px; }.senses-heading .eyebrow { margin-bottom: 26px; }.senses-heading .display { max-width: 100%; font-size: clamp(42px, 11.8vw, 50px); line-height: .98; letter-spacing: -.045em; }.senses-carousel { --sense-size: min(72vw, 286px); margin-inline: -6vw; }.senses-controls { padding: 0 6vw 10px; }.sense-arrow { width: 42px; height: 42px; }.senses-track { gap: 16px; padding-block: 20px 42px; padding-inline: calc(50vw - var(--sense-size) / 2); scroll-padding-inline: calc(50vw - var(--sense-size) / 2); }.sense-orbit-card { transform: scale(.9); }.sense-orbit-card.is-active { transform: scale(1.02); }.sense-card-heading { min-height: 72px; padding: 10px 13px 11px; }.sense-name-cn { font-size: 18px; }.sense-name-en { font-size: 20px; }.sense-orbit-card figcaption { min-height: 72px; padding: 14px 8px 0; }.sense-orbit-card figcaption p { font-size: 14px; }
       .process-item small,.service-row small,.case-meta { font-size: 15px; }
       .approach-intro { display: block; margin-bottom: 62px; }.approach-intro .copy { margin-top: 34px; font-size: 15px; }.approach-images { grid-template-columns: 1fr; gap: 10px; }.approach-images figure:first-child { aspect-ratio: 4/5; }.approach-images figure:last-child { aspect-ratio: 4/3; }.process { grid-template-columns: 1fr; }.process-item, .process-item + .process-item { padding: 26px 0; border-right: 0; border-top: 1px solid var(--line); }.process-item:first-child { border-top: 0; }
       .home-services { min-height: 0; }.services-inner { padding: 92px 6vw; }.service-preview { display: none; }.services-title { margin-bottom: 48px; }.service-row { grid-template-columns: 40px 1fr; gap: 6px; }.service-row strong { font-size: 44px; }.service-row span { grid-column: 2; margin-top: 8px; }
@@ -241,11 +243,11 @@
           <button class="sense-arrow sense-arrow--next" type="button" aria-label="Next sense">→</button>
         </div>
         <div class="senses-track" role="region" aria-label="Five senses of branding carousel" tabindex="0">
-          <figure class="sense-orbit-card is-active" data-sense-card="serenity"><div class="sense-orbit-image"><img src="assets/home/five-senses/serenity.png" alt="陽光下閉眼感受片刻寧靜的人物" loading="lazy"></div><figcaption><small>01</small><span>Serenity</span></figcaption></figure>
-          <figure class="sense-orbit-card" data-sense-card="authenticity"><div class="sense-orbit-image"><img src="assets/home/five-senses/authenticity.png" alt="手輕觸自然植物的真實觸感" loading="lazy"></div><figcaption><small>02</small><span>Authenticity</span></figcaption></figure>
-          <figure class="sense-orbit-card" data-sense-card="presence"><div class="sense-orbit-image"><img src="assets/home/five-senses/presence.png" alt="沙漏象徵專注當下與品牌存在感" loading="lazy"></div><figcaption><small>03</small><span>Presence</span></figcaption></figure>
-          <figure class="sense-orbit-card" data-sense-card="connection"><div class="sense-orbit-image"><img src="assets/home/five-senses/connection.png" alt="彼此靠近的手象徵人與人的連結" loading="lazy"></div><figcaption><small>04</small><span>Connection</span></figcaption></figure>
-          <figure class="sense-orbit-card" data-sense-card="atmosphere"><div class="sense-orbit-image"><img src="assets/home/five-senses/atmosphere.png" alt="柔和光影形成細膩的空間氛圍" loading="lazy"></div><figcaption><small>05</small><span>Atmosphere</span></figcaption></figure>
+          <figure class="sense-orbit-card is-active" data-sense-card="serenity"><div class="sense-card-heading"><span class="sense-name-cn">鬆弛感</span><span class="sense-name-en">Serenity</span></div><div class="sense-orbit-image"><img src="assets/home/five-senses/serenity.png" alt="陽光下閉眼感受片刻寧靜的人物" loading="lazy"></div><figcaption><p>自然的第一印象<br>讓品牌自在地融入生活</p></figcaption></figure>
+          <figure class="sense-orbit-card" data-sense-card="authenticity"><div class="sense-card-heading"><span class="sense-name-cn">原生感</span><span class="sense-name-en">Authenticity</span></div><div class="sense-orbit-image"><img src="assets/home/five-senses/authenticity.png" alt="手輕觸自然植物的真實觸感" loading="lazy"></div><figcaption><p>真實的情緒共鳴<br>讓品牌保有真誠與溫度</p></figcaption></figure>
+          <figure class="sense-orbit-card" data-sense-card="presence"><div class="sense-card-heading"><span class="sense-name-cn">存在感</span><span class="sense-name-en">Presence</span></div><div class="sense-orbit-image"><img src="assets/home/five-senses/presence.png" alt="沙漏象徵專注當下與品牌存在感" loading="lazy"></div><figcaption><p>可被記住的節奏<br>創造清晰而獨特的品牌印象</p></figcaption></figure>
+          <figure class="sense-orbit-card" data-sense-card="connection"><div class="sense-card-heading"><span class="sense-name-cn">社交感</span><span class="sense-name-en">Connection</span></div><div class="sense-orbit-image"><img src="assets/home/five-senses/connection.png" alt="彼此靠近的手象徵人與人的連結" loading="lazy"></div><figcaption><p>讓消費者成為<br>品牌故事的共演者</p></figcaption></figure>
+          <figure class="sense-orbit-card" data-sense-card="atmosphere"><div class="sense-card-heading"><span class="sense-name-cn">氛圍感</span><span class="sense-name-en">Atmosphere</span></div><div class="sense-orbit-image"><img src="assets/home/five-senses/atmosphere.png" alt="柔和光影形成細膩的空間氛圍" loading="lazy"></div><figcaption><p>用美學與故事<br>塑造品牌的精神氣場</p></figcaption></figure>
         </div>
       </div>
     </section>
