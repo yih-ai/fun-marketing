@@ -40,13 +40,13 @@
     .top {
       position: relative;
       z-index: 20;
-      height: 76px;
+      height: 80px;
       background: var(--ink-navy);
       color: var(--ivory);
     }
-    .nav-logo { position: absolute; top: 7px; left: 50%; width: 200px; height: 62px; transform: translateX(-50%); }
+    .nav-logo { position: absolute; top: 50%; left: 50%; width: 200px; height: 62px; transform: translate(-50%, -50%); }
     .nav-logo img { display: block; width: 100%; height: 100%; object-fit: contain; filter: invert(1) brightness(2.5); }
-    .nav-group { position: absolute; top: 27px; display: flex; gap: clamp(28px, 3vw, 48px); font: 400 clamp(15px, 1.25vw, 18px)/1 var(--sans); }
+    .nav-group { position: absolute; top: 50%; display: flex; gap: clamp(28px, 3vw, 48px); font: 400 clamp(15px, 1.25vw, 18px)/1 var(--sans); transform: translateY(-50%); }
     .nav-group a { text-decoration: none; transition: opacity .35s ease; }
     .nav-group a:hover, .nav-group a:focus-visible { opacity: .62; }
     .nav-left { left: 12vw; }
@@ -55,12 +55,15 @@
     .mobile-nav { display: none; }
 
     .hero { --transition-top-height: 118px; --transition-bottom-height: 126px; position: relative; z-index: 2; background: var(--ink-navy); color: var(--ivory); }
-    .hero-media { margin: 0; overflow: hidden; background: var(--ivory); }
-    .hero-media img { display: block; width: 100%; height: auto; transform-origin: center; animation: hero-scale 4.6s var(--ease) both; }
-    .hero-transition { position: relative; z-index: 4; width: 100%; overflow: hidden; pointer-events: none; line-height: 0; }
+    .hero-media { display: grid; place-items: center; height: clamp(700px, 58vw, 840px); margin: 0; overflow: hidden; background: var(--ivory); }
+    .hero-media img { display: block; width: 100%; height: 100%; object-fit: contain; transform-origin: center; animation: hero-scale 4.6s var(--ease) both; }
+    .hero-transition { position: relative; z-index: 4; width: 100%; overflow: hidden; pointer-events: none; line-height: 0; isolation: isolate; }
     .hero-transition svg { display: block; width: 100%; height: 100%; fill: currentColor; transform: translate3d(0, var(--curve-shift, 0px), 0); transform-origin: center; will-change: transform; }
-    .hero-transition-top { height: var(--transition-top-height); margin-top: calc(var(--transition-top-height) * -1); margin-bottom: -1px; color: var(--ink-navy); animation: transition-settle-top 1.65s var(--ease) both; }
-    .hero-transition-bottom { height: var(--transition-bottom-height); margin-top: calc(var(--transition-bottom-height) * -1); margin-bottom: -2px; color: var(--ivory); animation: transition-settle-bottom 1.8s .08s var(--ease) both; }
+    .hero-transition::after { content: ""; position: absolute; z-index: 2; right: 0; bottom: 0; left: 0; background: currentColor; pointer-events: none; }
+    .hero-transition-top { height: var(--transition-top-height); margin-top: calc(var(--transition-top-height) * -1); margin-bottom: -3px; color: var(--ink-navy); animation: transition-settle-top 1.65s var(--ease) both; }
+    .hero-transition-top::after { height: 4px; }
+    .hero-transition-bottom { height: var(--transition-bottom-height); margin-top: calc(var(--transition-bottom-height) * -1); margin-bottom: -3px; color: var(--ivory); animation: transition-settle-bottom 1.8s .08s var(--ease) both; }
+    .hero-transition-bottom::after { height: 22px; }
     .transition-mobile { display: none !important; }
     @keyframes transition-settle-top { from { opacity: .92; transform: translateY(16px) scaleY(.97); } to { opacity: 1; transform: none; } }
     @keyframes transition-settle-bottom { from { opacity: .92; transform: translateY(-14px) scaleY(.97); } to { opacity: 1; transform: none; } }
@@ -171,6 +174,7 @@
 
     @media (max-width: 1100px) {
       .hero { --transition-top-height: 86px; --transition-bottom-height: 92px; }
+      .hero-media { height: clamp(620px, 68vw, 720px); }
       .nav-left { left: 6vw; }.nav-right { right: 6vw; }.nav-group { font-size: 14px; gap: 24px; }
       .hero-copy { grid-template-columns: minmax(0, 1fr) 34%; }.hero-support { grid-column: 2; }
       .philosophy-grid { grid-template-columns: 50% 1fr; gap: 5vw; }.philosophy-media { min-height: 620px; }
@@ -181,9 +185,11 @@
 
     @media (max-width: 767px) {
       .hero { --transition-top-height: 52px; --transition-bottom-height: 58px; }
+      .hero-media { height: auto; }
+      .hero-media img { height: auto; object-fit: initial; }
       .transition-desktop { display: none !important; }.transition-mobile { display: block !important; }
       .section-shell { padding: 92px 6vw; }.display { font-size: clamp(54px, 17vw, 76px); line-height: .94; }
-      .top { height: 68px; }.nav-logo { top: 9px; width: 150px; height: 49px; }.nav-group { display: none; }
+      .top { height: 68px; }.nav-logo { width: 150px; height: 49px; }.nav-group { display: none; }
       .menu-toggle { position: absolute; top: 22px; right: 6vw; display: block; padding: 0; border: 0; background: transparent; color: var(--ivory); font: 500 11px/1 var(--mono); letter-spacing: .08em; }
       .mobile-nav { position: fixed; z-index: 19; inset: 68px 0 0; display: grid; align-content: center; gap: 0; padding: 8vw; background: var(--ink-navy); color: var(--ivory); opacity: 0; visibility: hidden; transform: translateY(-10px); transition: opacity .4s ease, transform .5s var(--ease), visibility .4s; }
       .mobile-nav.is-open { opacity: 1; visibility: visible; transform: none; }
@@ -337,11 +343,15 @@
       const topTransition = document.querySelector('.hero-transition-top');
       const bottomTransition = document.querySelector('.hero-transition-bottom');
       let transitionFrame = 0;
+      const alignToDevicePixel = (value) => {
+        const ratio = window.devicePixelRatio || 1;
+        return Math.round(value * ratio) / ratio;
+      };
       const updateTransitions = () => {
         const heroTop = hero.offsetTop;
         const progress = Math.min(1, Math.max(0, (window.scrollY - heroTop) / hero.offsetHeight));
-        topTransition.style.setProperty('--curve-shift', `${progress * 12}px`);
-        bottomTransition.style.setProperty('--curve-shift', `${progress * -18}px`);
+        topTransition.style.setProperty('--curve-shift', `${alignToDevicePixel(progress * 12)}px`);
+        bottomTransition.style.setProperty('--curve-shift', `${alignToDevicePixel(progress * -18)}px`);
         transitionFrame = 0;
       };
       const requestTransitionUpdate = () => {
