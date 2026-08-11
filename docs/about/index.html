@@ -23,6 +23,12 @@
       min-height: calc(100svh - 76px);
       overflow: hidden;
       background: #fff;
+      clip-path: polygon(
+        0 0, 100% 0, 100% 91%,
+        94% 92%, 88% 94%, 82% 96%, 76% 97%, 70% 97.5%,
+        64% 97%, 58% 95.5%, 52% 93.5%, 46% 92%, 40% 91%,
+        34% 91%, 28% 92%, 22% 94%, 16% 96%, 10% 97%, 5% 96%, 0 94%
+      );
     }
 
     .about-wave {
@@ -70,8 +76,9 @@
     }
 
     .team-section {
-      padding: clamp(70px, 7vw, 116px) 6vw clamp(80px, 8vw, 132px);
-      background: #fff;
+      margin-top: clamp(-72px, -5vw, -42px);
+      padding: clamp(138px, 11vw, 184px) 6vw clamp(80px, 8vw, 132px);
+      background: #f7f4ee;
       color: var(--about-ink);
     }
 
@@ -118,15 +125,54 @@
       line-height: 1.45;
     }
 
-    .team-board {
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(220px, 1fr));
+      gap: clamp(38px, 6vw, 92px);
+      max-width: 980px;
       margin: 0 auto;
-      max-width: 1250px;
     }
 
-    .team-board img {
-      display: block;
-      width: 100%;
-      height: auto;
+    .team-member {
+      text-align: center;
+    }
+
+    .team-photo {
+      width: 220px;
+      height: 205px;
+      margin: 0 auto 14px;
+      background-image: url('../assets/about-team-reference.png');
+      background-repeat: no-repeat;
+      background-size: 1243px 691px;
+    }
+
+    .team-photo--anya {
+      background-position: -224px -80px;
+    }
+
+    .team-photo--bear {
+      background-position: -560px -80px;
+    }
+
+    .team-photo--may {
+      height: 218px;
+      background-position: -559px -377px;
+    }
+
+    .team-member h3 {
+      margin: 0 0 6px;
+      font-family: Arial, sans-serif;
+      font-size: 20px;
+      font-weight: 400;
+      letter-spacing: .02em;
+      text-transform: uppercase;
+    }
+
+    .team-member p {
+      margin: 0;
+      color: #aa9671;
+      font-size: 14px;
+      line-height: 1.4;
     }
 
     .sr-only {
@@ -174,6 +220,10 @@
         grid-template-columns: 1fr;
         gap: 24px;
         margin-inline: 0;
+      }
+
+      .team-grid {
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -227,17 +277,23 @@
         </p>
       </div>
 
-      <figure class="team-board">
-        <img src="../assets/about-team-reference.png" alt="FUN PROJECT 團隊：Anya Ho、Bear H.、Ion、May Lin 與 Joy">
-      </figure>
-
-      <ul class="sr-only">
-        <li>Anya Ho — Founder &amp; Brand Strategy</li>
-        <li>Bear H. — Visual Content &amp; Production</li>
-        <li>Ion — Visual Content &amp; Production</li>
-        <li>May Lin — Content, Media &amp; Campaign</li>
-        <li>Joy — Photographer</li>
-      </ul>
+      <div class="team-grid">
+        <article class="team-member">
+          <div class="team-photo team-photo--anya" role="img" aria-label="Anya Ho"></div>
+          <h3>Anya Ho</h3>
+          <p>Founder &amp; Brand Strategy</p>
+        </article>
+        <article class="team-member">
+          <div class="team-photo team-photo--bear" role="img" aria-label="Bear H."></div>
+          <h3>Bear H.</h3>
+          <p>Visual Content &amp; Production</p>
+        </article>
+        <article class="team-member">
+          <div class="team-photo team-photo--may" role="img" aria-label="May Lin"></div>
+          <h3>May Lin</h3>
+          <p>Content, Media &amp; Campaign</p>
+        </article>
+      </div>
     </section>
   </main>
 
