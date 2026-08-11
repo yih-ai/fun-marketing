@@ -20,11 +20,14 @@
     .nav{height:76px}.nav .links{top:29px;gap:30px;font-size:13px}.nav .nav-logo{top:8px;width:235px;height:60px}.poster{height:calc(100svh - 76px);display:grid;place-items:center;background:#f8f6f1}.poster>img{width:100%;height:100%;object-fit:contain}@media(max-width:900px){.nav{height:64px}.nav .nav-logo{top:8px;width:150px;height:48px}.poster{height:calc(100svh - 64px)}}
   </style>
   <style>.poster{height:auto;display:block}.poster>img{display:block;width:100%;height:auto;object-fit:initial}</style>
+  <style>
+    .poster.team-reveal{position:relative;overflow:hidden}.team-mask{position:absolute;z-index:2;background:#f8f6f1;pointer-events:none;opacity:1;animation:team-member .48s cubic-bezier(.22,.8,.2,1) forwards}.team-mask.left{inset:0;clip-path:polygon(14% 38%,31% 38%,36% 88%,13% 88%);animation-delay:.65s}.team-mask.standing{inset:0;clip-path:polygon(35% 22%,53% 22%,57% 88%,33% 88%);animation-delay:.92s}.team-mask.right{inset:0;clip-path:polygon(64% 22%,86% 22%,88% 89%,62% 89%);animation-delay:1.18s}@keyframes team-member{0%{opacity:1;transform:translateY(24px)}100%{opacity:0;transform:translateY(0)}}@media(prefers-reduced-motion:reduce){.team-mask{display:none}}
+  </style>
 </head>
 <body>
   <nav class="nav"><div class="links primary"><a href="work/">WORK</a><a href="services/">SERVICES</a></div><a class="nav-logo" href="./" aria-label="FUN PROJECT 首頁"><img src="assets/logo-nav.png" alt="FUN PROJECT"></a><div class="links secondary"><a href="about/">ABOUT</a><a href="contact/">START A PROJECT ↗</a></div><span class="menu">MENU</span></nav>
   <main>
-    <figure class="poster"><img src="assets/creative-marketing-hero.png?v=2" alt="Creative Marketing 團隊企劃插畫"></figure>
+    <figure class="poster team-reveal"><img src="assets/creative-marketing-hero.png?v=3" alt="Creative Marketing 團隊企劃插畫"><span class="team-mask left" aria-hidden="true"></span><span class="team-mask standing" aria-hidden="true"></span><span class="team-mask right" aria-hidden="true"></span></figure>
     <section class="intro"><div class="intro-grid"><p class="kicker">01 / FUN PROJECT</p><h1>We make brands<br>people can <em>feel.</em></h1></div></section>
     <section class="manifesto"><div class="title">Strategy, story<br>&amp; experience.</div><div class="copy">為講究品味與體驗的品牌，從策略、影像、內容、社群到實體互動，建立能被看見、被感受，也被記住的品牌存在。<br><a class="arrow" href="about/">ABOUT FUN PROJECT →</a></div></section>
     <section class="section-head"><p class="kicker">02 / WHAT WE DO</p><h2>Ways we move<br>brands forward.</h2></section>
