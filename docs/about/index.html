@@ -1,1 +1,249 @@
-<!doctype html><html lang="zh-Hant"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="../site.css"><title>About｜FUN PROJECT</title><body><nav class="top"><a class="brand" href="../">FUN PROJECT</a><div class="links"><a href="../work/">WORK</a><a href="../services/">SERVICES</a><a href="../contact/">START A PROJECT ↗</a></div></nav><header class="hero"><small>ABOUT FUN PROJECT</small><h1>A creative<br>consultancy<br>with feeling.</h1></header><main class="content"><p class="copy">我們以氛圍敘事為核心，整合策略、影像、內容、社群與品牌體驗，為講究品味與感受的品牌，打造被看見、被感受，也被記住的存在感。</p><div class="grid"><article class="card"><small>FOUNDER & BRAND STRATEGY</small><h2>Anya Ho</h2><p>以策略與感性，協助品牌找到獨有語氣與方向。</p></article><article class="card"><small>OUR COLLECTIVE</small><h2>Creative,<br>Content & Production</h2><p>連結設計、內容、攝影與公關專業，讓想法完整落地。</p></article></div></main><footer class="footer">FUN PROJECT <span><a href="../contact/">WORK WITH US →</a></span></footer></body></html>
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About Us｜FUN PROJECT</title>
+  <meta name="description" content="FUN PROJECT 是一間以氛圍敘事為核心的品牌行銷顧問公司。">
+  <link rel="stylesheet" href="../site.css">
+  <style>
+    :root {
+      --about-navy: #102f52;
+      --about-orange: #b54b20;
+      --about-grey: #918b88;
+      --about-ink: #343434;
+    }
+
+    body {
+      background: #fff;
+    }
+
+    .about-hero {
+      position: relative;
+      min-height: calc(100svh - 76px);
+      overflow: hidden;
+      background: #fff;
+    }
+
+    .about-wave {
+      position: absolute;
+      inset: 0;
+      background: url('../assets/about-waves.webp') left bottom / 100% auto no-repeat;
+      pointer-events: none;
+    }
+
+    .about-copy {
+      position: relative;
+      z-index: 1;
+      width: min(620px, 50vw);
+      margin-left: 39.5%;
+      padding-top: clamp(72px, 8vw, 132px);
+      padding-bottom: 300px;
+    }
+
+    .about-copy h1 {
+      margin: 0 0 38px;
+      color: var(--about-navy);
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: clamp(54px, 5vw, 82px);
+      font-weight: 400;
+      line-height: .95;
+      letter-spacing: -.035em;
+    }
+
+    .about-lead {
+      margin: 0 0 34px;
+      color: var(--about-orange);
+      font-size: clamp(17px, 1.45vw, 24px);
+      line-height: 1.13;
+    }
+
+    .about-body {
+      max-width: 600px;
+      color: var(--about-grey);
+      font-size: clamp(15px, 1.15vw, 19px);
+      line-height: 1.55;
+    }
+
+    .about-body p {
+      margin: 0 0 22px;
+    }
+
+    .team-section {
+      padding: clamp(70px, 7vw, 116px) 6vw clamp(80px, 8vw, 132px);
+      background: #fff;
+      color: var(--about-ink);
+    }
+
+    .team-kicker {
+      display: grid;
+      grid-template-columns: auto 1fr minmax(260px, 340px);
+      align-items: start;
+      gap: 32px;
+      color: #8b7971;
+      font-size: 12px;
+      letter-spacing: .22em;
+      line-height: 1.35;
+      text-transform: uppercase;
+    }
+
+    .team-rule {
+      height: 1px;
+      margin-top: 7px;
+      background: #857c78;
+    }
+
+    .team-intro {
+      display: grid;
+      grid-template-columns: minmax(260px, .72fr) 1fr;
+      gap: 72px;
+      align-items: end;
+      margin: clamp(54px, 6vw, 90px) 2vw 48px;
+    }
+
+    .team-intro h2 {
+      margin: 0;
+      color: var(--about-navy);
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: clamp(58px, 5.3vw, 88px);
+      font-weight: 400;
+      line-height: 1;
+    }
+
+    .team-intro p {
+      max-width: 620px;
+      margin: 0;
+      color: #6e6662;
+      font-size: clamp(16px, 1.25vw, 20px);
+      line-height: 1.45;
+    }
+
+    .team-board {
+      margin: 0 auto;
+      max-width: 1250px;
+    }
+
+    .team-board img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    @media (max-width: 800px) {
+      .about-hero {
+        min-height: 820px;
+      }
+
+      .about-wave {
+        background-size: auto 62%;
+        background-position: 35% bottom;
+        opacity: .8;
+      }
+
+      .about-copy {
+        width: auto;
+        margin: 0;
+        padding: 72px 7vw 360px;
+      }
+
+      .about-copy h1 {
+        margin-bottom: 28px;
+      }
+
+      .team-kicker {
+        grid-template-columns: auto 1fr;
+      }
+
+      .team-kicker span:last-child {
+        grid-column: 1 / -1;
+      }
+
+      .team-intro {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        margin-inline: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="top" aria-label="主要導覽">
+    <a class="brand" href="../" aria-label="FUN PROJECT 首頁">FUN PROJECT</a>
+    <div class="links">
+      <a href="../work/">WORK</a>
+      <a href="../services/">SERVICES</a>
+      <a href="../contact/">START A PROJECT ↗</a>
+    </div>
+  </nav>
+
+  <main>
+    <section class="about-hero" aria-labelledby="about-title">
+      <div class="about-wave" aria-hidden="true"></div>
+      <div class="about-copy">
+        <h1 id="about-title">About Us</h1>
+        <p class="about-lead">
+          為講究品味與氛圍的品牌，打造有溫度的行銷語言<br>
+          A Creative Consultancy for Tasteful Brands &amp; Experiences.
+        </p>
+        <div class="about-body">
+          <p>
+            我們擅長以「氛圍敘事」為核心<br>
+            整合影像、文字、社群與策略<br>
+            為品牌打造能被看見、也能被感知的存在感
+          </p>
+          <p>
+            我們服務的品牌涵蓋餐飲、生活風格、美學設計與體驗產業<br>
+            將每一次的合作化為一次感官旅程<br>
+            讓品牌不只擁有形象，更擁有靈魂
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="team-section" aria-labelledby="team-title">
+      <div class="team-kicker" aria-hidden="true">
+        <span>Fun Project</span>
+        <span class="team-rule"></span>
+        <span>A Creative Consultancy for<br>Tasteful Brands &amp; Experiences</span>
+      </div>
+
+      <div class="team-intro">
+        <h2 id="team-title">Our Team</h2>
+        <p>
+          Our team consists of qualified specialists who are ready to turn your ideas into reality.<br><br>
+          All our specialists are regularly trained and improve their skills for the best result for you.
+        </p>
+      </div>
+
+      <figure class="team-board">
+        <img src="../assets/about-team-reference.png" alt="FUN PROJECT 團隊：Anya Ho、Bear H.、Ion、May Lin 與 Joy">
+      </figure>
+
+      <ul class="sr-only">
+        <li>Anya Ho — Founder &amp; Brand Strategy</li>
+        <li>Bear H. — Visual Content &amp; Production</li>
+        <li>Ion — Visual Content &amp; Production</li>
+        <li>May Lin — Content, Media &amp; Campaign</li>
+        <li>Joy — Photographer</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="footer">
+    FUN PROJECT
+    <span><a href="../contact/">WORK WITH US →</a></span>
+  </footer>
+</body>
+</html>
