@@ -158,7 +158,9 @@
       height: auto;
       aspect-ratio: 1;
       object-fit: cover;
-      mix-blend-mode: multiply;
+      mix-blend-mode: darken;
+      -webkit-mask-image: radial-gradient(ellipse 100% 100% at center, #000 88%, transparent 100%);
+      mask-image: radial-gradient(ellipse 100% 100% at center, #000 88%, transparent 100%);
     }
 
     .motion-ready .about-collective__art {
@@ -174,42 +176,56 @@
 
     .team-grid {
       display: grid;
-      grid-template-columns: repeat(3, minmax(220px, 1fr));
-      gap: clamp(38px, 6vw, 92px);
-      max-width: 980px;
-      margin: clamp(72px, 7vw, 104px) auto 0;
+      grid-template-columns: repeat(3, minmax(260px, 1fr));
+      gap: clamp(48px, 5vw, 78px);
+      max-width: 1120px;
+      margin: clamp(88px, 8vw, 124px) auto 0;
     }
 
     .team-member {
       text-align: center;
     }
 
+    .motion-ready .team-member {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    .motion-ready .team-member.is-visible {
+      opacity: 1;
+      transform: none;
+      transition: opacity .85s ease, transform .95s cubic-bezier(.22, 1, .36, 1);
+    }
+
+    .motion-ready .team-member:nth-child(2).is-visible { transition-delay: .13s; }
+    .motion-ready .team-member:nth-child(3).is-visible { transition-delay: .26s; }
+
     .team-photo {
-      width: 220px;
-      height: 205px;
-      margin: 0 auto 14px;
+      width: 260px;
+      height: 242px;
+      margin: 0 auto 22px;
       background-image: url('../assets/about-team-reference.png');
       background-repeat: no-repeat;
-      background-size: 1243px 691px;
+      background-size: 1469px 817px;
     }
 
     .team-photo--anya {
-      background-position: -224px -80px;
+      background-position: -265px -95px;
     }
 
     .team-photo--bear {
-      background-position: -560px -80px;
+      background-position: -662px -95px;
     }
 
     .team-photo--may {
-      height: 218px;
-      background-position: -559px -377px;
+      height: 258px;
+      background-position: -661px -446px;
     }
 
     .team-member h3 {
-      margin: 0 0 6px;
+      margin: 0 0 9px;
       font-family: Arial, sans-serif;
-      font-size: 20px;
+      font-size: 30px;
       font-weight: 400;
       letter-spacing: .02em;
       text-transform: uppercase;
@@ -218,8 +234,8 @@
     .team-member p {
       margin: 0;
       color: #aa9671;
-      font-size: 14px;
-      line-height: 1.4;
+      font-size: 17px;
+      line-height: 1.45;
     }
 
     .sr-only {
@@ -238,6 +254,18 @@
       .about-copy {
         left: 48%;
         width: 48vw;
+      }
+    }
+
+    @media (max-width: 1100px) and (min-width: 801px) {
+      .team-grid {
+        grid-template-columns: repeat(2, minmax(260px, 1fr));
+        max-width: 760px;
+        row-gap: 72px;
+      }
+
+      .team-member:last-child {
+        grid-column: 1 / -1;
       }
     }
 
@@ -307,7 +335,8 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .motion-ready .about-collective__art { opacity: 1; transform: none; transition: none; }
+      .motion-ready .about-collective__art,
+      .motion-ready .team-member { opacity: 1; transform: none; transition: none; }
     }
   </style>
 </head>
@@ -391,11 +420,11 @@
   </footer>
   <script>
     document.documentElement.classList.add('motion-ready');
-    const collectiveArt = document.querySelector('.about-collective__art');
+    const teamRevealElements = document.querySelectorAll('.about-collective__art, .team-member');
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      collectiveArt.classList.add('is-visible');
+      teamRevealElements.forEach((element) => element.classList.add('is-visible'));
     } else {
-      const collectiveObserver = new IntersectionObserver((entries, observer) => {
+      const teamObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add('is-visible');
@@ -403,7 +432,7 @@
           }
         });
       }, { threshold: .18, rootMargin: '0px 0px -6% 0px' });
-      collectiveObserver.observe(collectiveArt);
+      teamRevealElements.forEach((element) => teamObserver.observe(element));
     }
   </script>
 </body>
