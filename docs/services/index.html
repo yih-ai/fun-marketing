@@ -1,1 +1,468 @@
-<!doctype html><html lang="zh-Hant"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="../site.css"><title>Services｜FUN PROJECT</title><body><nav class="top"><a class="brand" href="../">FUN PROJECT</a><div class="links"><a href="../work/">WORK</a><a href="../about/">ABOUT</a><a href="../contact/">START A PROJECT ↗</a></div></nav><header class="hero"><small>WHAT WE DO</small><h1>Strategy,<br>story &<br>experience.</h1><p>從策略到體驗，協助品牌建立一個人們能夠感受到的世界。</p></header><main class="content"><div class="grid"><article class="card"><small>01</small><h2>Brand Strategy</h2><p>品牌診斷、行銷策略、內容方向與品牌定位。</p></article><article class="card"><small>02</small><h2>Branding</h2><p>品牌故事、視覺識別、品牌語言與定位。</p></article><article class="card"><small>03</small><h2>Creative Design</h2><p>行銷素材、活動視覺、數位廣告與平面設計。</p></article><article class="card"><small>04</small><h2>Content Production</h2><p>品牌、活動與商品攝影；影片與社群內容製作。</p></article><article class="card"><small>05</small><h2>Social & Campaign</h2><p>內容策略、社群規劃、數位活動與廣告投放。</p></article><article class="card"><small>06</small><h2>PR & Experience</h2><p>媒體關係、KOL／KOC、發表會、活動與 VIP 體驗。</p></article></div></main><footer class="footer">FUN PROJECT <span><a href="../contact/">START A PROJECT →</a></span></footer></body></html>
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Services｜FUN PROJECT</title>
+  <meta name="description" content="FUN PROJECT 提供品牌策略、品牌識別、創意設計、內容製作、社群行銷、公關與品牌體驗服務。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../site.css">
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      overflow-x: hidden;
+    }
+
+    .services-page {
+      --serif: 'Cormorant Garamond', Garamond, 'Times New Roman', serif;
+      --accent: #c24b2b;
+      --muted: #706b64;
+      --hairline: #c9c3b8;
+    }
+
+    .services-hero {
+      min-height: calc(88svh - 76px);
+      display: grid;
+      grid-template-columns: minmax(0, 45%) 1fr;
+      align-items: center;
+      padding: clamp(72px, 8vw, 132px) 4.5vw clamp(64px, 7vw, 112px);
+      border-bottom: 1px solid var(--hairline);
+    }
+
+    .section-label {
+      display: block;
+      margin-bottom: 24px;
+      color: var(--accent);
+      font: 10px/1.2 monospace;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .services-hero h1 {
+      max-width: 720px;
+      margin: 0;
+      font: 400 clamp(92px, 8.4vw, 128px)/.84 var(--serif);
+      letter-spacing: -.055em;
+    }
+
+    .hero-summary {
+      max-width: 590px;
+      margin: 38px 0 0;
+      font-size: 16px;
+      line-height: 1.8;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      margin-top: 34px;
+    }
+
+    .text-link {
+      position: relative;
+      display: inline-block;
+      padding-bottom: 6px;
+      color: inherit;
+      font: 11px/1.2 monospace;
+      letter-spacing: .08em;
+      text-decoration: none;
+    }
+
+    .text-link::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      height: 1px;
+      background: currentColor;
+      transform-origin: left;
+      transition: transform .5s cubic-bezier(.22, 1, .36, 1);
+    }
+
+    .text-link:hover::after {
+      transform: scaleX(.35);
+    }
+
+    .services-intro {
+      padding: clamp(92px, 10vw, 160px) 4.5vw clamp(76px, 8vw, 124px);
+      border-bottom: 1px solid var(--hairline);
+    }
+
+    .services-intro h2 {
+      max-width: 880px;
+      margin: 0;
+      font: 400 clamp(58px, 5.5vw, 78px)/.95 var(--serif);
+      letter-spacing: -.04em;
+    }
+
+    .services-intro p {
+      max-width: 590px;
+      margin: 30px 0 0;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.8;
+    }
+
+    .services-list {
+      padding: clamp(64px, 6vw, 96px) 4.5vw clamp(84px, 8vw, 128px);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      border-top: 1px solid var(--hairline);
+      border-left: 1px solid var(--hairline);
+    }
+
+    .service-item {
+      min-height: 400px;
+      padding: 34px 32px 40px;
+      border-right: 1px solid var(--hairline);
+      border-bottom: 1px solid var(--hairline);
+      transition: color .5s ease, border-color .5s ease, opacity .65s ease, transform .65s cubic-bezier(.22, 1, .36, 1);
+    }
+
+    .service-topline {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: var(--accent);
+      font: 10px/1 monospace;
+      letter-spacing: .12em;
+    }
+
+    .service-arrow {
+      opacity: 0;
+      transform: translateX(-8px);
+      transition: opacity .45s ease, transform .5s cubic-bezier(.22, 1, .36, 1);
+    }
+
+    .service-item h3 {
+      max-width: 330px;
+      margin: 66px 0 12px;
+      font: 400 clamp(40px, 3.4vw, 50px)/.92 var(--serif);
+      letter-spacing: -.04em;
+      transition: transform .5s cubic-bezier(.22, 1, .36, 1);
+    }
+
+    .service-item h4 {
+      margin: 0 0 28px;
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: .04em;
+    }
+
+    .service-description {
+      max-width: 310px;
+      margin: 0 0 28px;
+      font-size: 15px;
+      line-height: 1.75;
+    }
+
+    .service-keywords {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    .motion-ready .service-item {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+
+    .motion-ready .service-item.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .project-cta {
+      padding: clamp(108px, 12vw, 190px) 4.5vw;
+      border-top: 1px solid var(--hairline);
+    }
+
+    .project-cta h2 {
+      max-width: 950px;
+      margin: 0;
+      font: 400 clamp(66px, 7.2vw, 108px)/.88 var(--serif);
+      letter-spacing: -.045em;
+    }
+
+    .project-cta p {
+      max-width: 520px;
+      margin: 34px 0 0;
+      font-size: 16px;
+      line-height: 1.8;
+    }
+
+    .project-cta .text-link {
+      margin-top: 34px;
+      color: var(--accent);
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      .service-item:hover h3 {
+        transform: translateX(5px);
+      }
+
+      .service-item:hover .service-arrow {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      .service-item:hover {
+        color: #302d29;
+        border-color: #a9a196;
+      }
+    }
+
+    @media (max-width: 1000px) {
+      .services-hero {
+        grid-template-columns: minmax(0, 62%) 1fr;
+      }
+
+      .services-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 700px) {
+      .services-hero {
+        min-height: auto;
+        display: block;
+        padding: 88px 6vw 84px;
+      }
+
+      .services-hero h1 {
+        font-size: clamp(54px, 17vw, 68px);
+        line-height: .9;
+      }
+
+      .hero-summary {
+        margin-top: 30px;
+        font-size: 15px;
+      }
+
+      .hero-actions {
+        display: grid;
+        gap: 20px;
+      }
+
+      .hero-actions .text-link {
+        width: max-content;
+      }
+
+      .services-intro,
+      .services-list,
+      .project-cta {
+        padding-left: 6vw;
+        padding-right: 6vw;
+      }
+
+      .services-intro h2 {
+        font-size: clamp(48px, 14vw, 62px);
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .service-item {
+        min-height: 0;
+        padding: 30px 26px 38px;
+      }
+
+      .service-item h3 {
+        margin-top: 48px;
+        font-size: clamp(38px, 12vw, 46px);
+      }
+
+      .project-cta h2 {
+        font-size: clamp(54px, 16vw, 72px);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      .motion-ready .service-item,
+      .service-item,
+      .service-item h3,
+      .service-arrow,
+      .text-link::after {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="top" aria-label="主要導覽">
+    <a class="brand" href="../" aria-label="FUN PROJECT 首頁">FUN PROJECT</a>
+    <div class="links">
+      <a href="../work/">WORK</a>
+      <a href="../about/">ABOUT</a>
+      <a href="../contact/">START A PROJECT ↗</a>
+    </div>
+  </nav>
+
+  <main class="services-page">
+    <section class="services-hero" aria-labelledby="services-title">
+      <div class="services-hero-copy">
+        <span class="section-label">What We Do</span>
+        <h1 id="services-title">Strategy,<br>story &amp;<br>experience.</h1>
+        <p class="hero-summary">
+          從品牌策略、創意內容到整合行銷，<br>
+          我們為品牌打造被看見、被記住，也被喜歡的體驗。
+        </p>
+        <div class="hero-actions">
+          <a class="text-link" href="../work/">VIEW OUR WORK ↗</a>
+          <a class="text-link" href="#services">EXPLORE SERVICES ↓</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="services-intro" id="services" aria-labelledby="services-intro-title">
+      <span class="section-label">Our Services</span>
+      <h2 id="services-intro-title">From strategy to experience.</h2>
+      <p>
+        從品牌的核心定位開始，<br>
+        一路延伸至視覺、內容、傳播與實體體驗。
+      </p>
+    </section>
+
+    <section class="services-list" aria-label="服務項目">
+      <div class="services-grid">
+        <article class="service-item">
+          <div class="service-topline"><span>01</span><span class="service-arrow">→</span></div>
+          <h3>Brand Strategy</h3>
+          <h4>品牌策略</h4>
+          <p class="service-description">找到品牌真正值得被記住的位置。</p>
+          <ul class="service-keywords">
+            <li>Brand Positioning</li>
+            <li>Marketing Strategy</li>
+            <li>Communication Strategy</li>
+            <li>Content Direction</li>
+          </ul>
+        </article>
+
+        <article class="service-item">
+          <div class="service-topline"><span>02</span><span class="service-arrow">→</span></div>
+          <h3>Brand Identity</h3>
+          <h4>品牌識別</h4>
+          <p class="service-description">建立一致且具有辨識度的品牌世界。</p>
+          <ul class="service-keywords">
+            <li>Brand Story</li>
+            <li>Visual Identity</li>
+            <li>Brand Language</li>
+            <li>Brand Guidelines</li>
+          </ul>
+        </article>
+
+        <article class="service-item">
+          <div class="service-topline"><span>03</span><span class="service-arrow">→</span></div>
+          <h3>Creative &amp; Design</h3>
+          <h4>創意設計</h4>
+          <p class="service-description">將策略轉化為能被看見與感受到的創意。</p>
+          <ul class="service-keywords">
+            <li>Campaign Creative</li>
+            <li>Key Visual</li>
+            <li>Digital Design</li>
+            <li>Marketing Materials</li>
+          </ul>
+        </article>
+
+        <article class="service-item">
+          <div class="service-topline"><span>04</span><span class="service-arrow">→</span></div>
+          <h3>Content Production</h3>
+          <h4>內容製作</h4>
+          <p class="service-description">用影像與內容，說出品牌的故事。</p>
+          <ul class="service-keywords">
+            <li>Product Photography</li>
+            <li>Campaign Shooting</li>
+            <li>Video Production</li>
+            <li>Social Content</li>
+          </ul>
+        </article>
+
+        <article class="service-item">
+          <div class="service-topline"><span>05</span><span class="service-arrow">→</span></div>
+          <h3>Social &amp; Campaign</h3>
+          <h4>社群與整合行銷</h4>
+          <p class="service-description">讓好的內容真正走進市場。</p>
+          <ul class="service-keywords">
+            <li>Social Strategy</li>
+            <li>Campaign Planning</li>
+            <li>Content Planning</li>
+            <li>Digital Advertising</li>
+          </ul>
+        </article>
+
+        <article class="service-item">
+          <div class="service-topline"><span>06</span><span class="service-arrow">→</span></div>
+          <h3>PR &amp; Experience</h3>
+          <h4>公關與品牌體驗</h4>
+          <p class="service-description">創造話題，也創造真實的品牌接觸。</p>
+          <ul class="service-keywords">
+            <li>PR / Media</li>
+            <li>KOL &amp; KOC</li>
+            <li>Events</li>
+            <li>VIP Experience</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="project-cta" aria-labelledby="project-cta-title">
+      <span class="section-label">Not Sure Where to Start?</span>
+      <h2 id="project-cta-title">Tell us about your brand.</h2>
+      <p>
+        我們會從你的品牌與目標開始，<br>
+        找出最適合的合作方式。
+      </p>
+      <a class="text-link" href="../contact/">START A PROJECT →</a>
+    </section>
+  </main>
+
+  <footer class="footer">
+    FUN PROJECT
+    <span><a href="../contact/">START A PROJECT →</a></span>
+  </footer>
+
+  <script>
+    (() => {
+      const items = [...document.querySelectorAll('.service-item')];
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (reduceMotion || !('IntersectionObserver' in window)) {
+        items.forEach((item) => item.classList.add('is-visible'));
+        return;
+      }
+
+      document.documentElement.classList.add('motion-ready');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const index = items.indexOf(entry.target);
+          window.setTimeout(() => entry.target.classList.add('is-visible'), (index % 3) * 90);
+          observer.unobserve(entry.target);
+        });
+      }, { threshold: 0.16 });
+
+      items.forEach((item) => observer.observe(item));
+    })();
+  </script>
+</body>
+</html>
