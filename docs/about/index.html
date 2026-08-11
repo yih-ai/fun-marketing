@@ -54,8 +54,8 @@
       position: absolute;
       z-index: 1;
       top: 84px;
-      left: 40%;
-      width: min(700px, 55vw);
+      left: 500px;
+      width: 700px;
       margin: 0;
       padding: 0;
     }
@@ -64,7 +64,7 @@
       margin: 0 0 38px;
       color: var(--about-navy);
       font-family: Georgia, 'Times New Roman', serif;
-      font-size: clamp(54px, 5vw, 82px);
+      font-size: 72px;
       font-weight: 400;
       line-height: .95;
       letter-spacing: -.035em;
@@ -73,14 +73,14 @@
     .about-lead {
       margin: 0 0 34px;
       color: var(--about-orange);
-      font-size: clamp(17px, 1.45vw, 24px);
+      font-size: 20px;
       line-height: 1.13;
     }
 
     .about-body {
       max-width: 600px;
       color: var(--about-grey);
-      font-size: clamp(15px, 1.15vw, 19px);
+      font-size: 17px;
       line-height: 1.55;
     }
 
@@ -200,6 +200,13 @@
       border: 0;
     }
 
+    @media (max-width: 1250px) and (min-width: 801px) {
+      .about-copy {
+        left: 40%;
+        width: 55vw;
+      }
+    }
+
     @media (max-width: 800px) {
       .about-hero {
         min-height: 820px;
@@ -229,6 +236,15 @@
 
       .about-copy h1 {
         margin-bottom: 28px;
+        font-size: clamp(52px, 16vw, 68px);
+      }
+
+      .about-lead {
+        font-size: 17px;
+      }
+
+      .about-body {
+        font-size: 15px;
       }
 
       .team-kicker {
