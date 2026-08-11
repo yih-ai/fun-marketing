@@ -55,7 +55,7 @@
     .mobile-nav { display: none; }
 
     .hero { position: relative; z-index: 2; background: var(--ink-navy); color: var(--ivory); }
-    .hero-media { display: grid; place-items: center; min-height: clamp(620px, 68vh, 820px); margin: 0; padding: clamp(20px, 2.5vw, 36px) 0 0; overflow: hidden; background: var(--ivory); }
+    .hero-media { display: grid; place-items: center; min-height: clamp(620px, 68vh, 820px); margin: 0; padding: 0; overflow: hidden; background: var(--ivory); }
     .hero-artwork { position: relative; width: 100%; line-height: 0; transform-origin: center; animation: hero-scale 4.6s var(--ease) both; }
     .hero-artwork__video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: contain; background: var(--ivory); }
     .hero-copy { position: relative; z-index: 5; display: grid; grid-template-columns: minmax(0, 1fr) 30%; gap: 22px 7vw; align-items: end; margin: 0; padding: clamp(72px, 7.5vw, 126px) 5vw clamp(88px, 9vw, 150px); background: var(--ink-navy); }
@@ -164,7 +164,7 @@
     .motion-ready .image-reveal.is-visible { opacity: 1; transform: none; transition: opacity .75s ease, transform .9s var(--ease); }
 
     @media (max-width: 1100px) {
-      .hero-media { min-height: 0; padding-top: clamp(18px, 3vw, 28px); padding-bottom: 0; }
+      .hero-media { min-height: 0; padding: 0; }
       .nav-left { left: 6vw; }.nav-right { right: 6vw; }.nav-group { font-size: 14px; gap: 24px; }
       .hero-copy { grid-template-columns: minmax(0, 1fr) 34%; }.hero-support { grid-column: 2; }
       .philosophy-grid { grid-template-columns: 50% 1fr; gap: 5vw; }.philosophy-media { min-height: 620px; }
@@ -212,7 +212,7 @@
       <figure class="hero-media">
         <div class="hero-artwork">
           <video class="hero-artwork__video" autoplay muted loop playsinline preload="metadata" poster="assets/creative-marketing-hero.png?v=2" aria-label="FUN PROJECT creative marketing team illustration">
-            <source src="assets/video/hero.mp4?v=5" type="video/mp4">
+            <source src="assets/video/hero.mp4?v=6" type="video/mp4">
           </video>
         </div>
       </figure>
