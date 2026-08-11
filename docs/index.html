@@ -90,17 +90,22 @@
     .five-senses { background: #f0ede6; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
     .senses-heading { display: grid; grid-template-columns: 34% 1fr; margin-bottom: clamp(58px, 6vw, 92px); }
     .senses-heading h2 { max-width: 760px; }
-    .senses-desktop { display: grid; grid-template-columns: 37% minmax(0, 1fr); gap: 8vw; align-items: stretch; }
-    .sense-list { border-top: 1px solid var(--line); }
-    .sense-button { width: 100%; display: grid; grid-template-columns: 52px 1fr; align-items: baseline; gap: 12px; padding: 24px 0; border: 0; border-bottom: 1px solid var(--line); background: transparent; color: var(--navy); text-align: left; cursor: pointer; transition: color .6s ease, padding-left .6s var(--ease); }
-    .sense-button small { font: 500 22px/1 var(--mono); letter-spacing: .04em; }
-    .sense-button span { font: 400 clamp(38px, 4vw, 60px)/.95 var(--serif); letter-spacing: -.035em; }
-    .sense-button[aria-selected="true"] { padding-left: 12px; color: var(--terracotta); }
-    .sense-button:focus-visible { outline: 1px solid var(--terracotta); outline-offset: -2px; }
-    .sense-stage { position: relative; min-height: 690px; overflow: hidden; background: #d8d2c8; }
-    .sense-image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transform: scale(1.04); filter: blur(4px); transition: opacity .78s ease, transform .85s var(--ease), filter .78s ease; }
-    .sense-image.is-active { z-index: 1; opacity: 1; transform: scale(1); filter: blur(0); }
-    .senses-mobile { display: none; }
+    .senses-carousel { --sense-size: clamp(220px, 26vw, 370px); margin-inline: -5vw; overflow: hidden; }
+    .senses-controls { display: flex; justify-content: flex-end; gap: 10px; padding: 0 5vw 24px; }
+    .sense-arrow { display: grid; width: 48px; height: 48px; place-items: center; border: 1px solid rgba(23,48,70,.32); border-radius: 50%; background: transparent; color: var(--navy); font: 400 22px/1 var(--sans); cursor: pointer; transition: color .35s ease, background .35s ease, transform .35s var(--ease); }
+    .sense-arrow:hover { background: var(--navy); color: var(--ivory); transform: scale(1.06); }
+    .sense-arrow:focus-visible { outline: 2px solid var(--terracotta); outline-offset: 3px; }
+    .senses-track { display: flex; gap: clamp(18px, 2.5vw, 38px); overflow-x: auto; padding: clamp(26px, 3.5vw, 54px) max(5vw, calc(50vw - var(--sense-size) / 2)) clamp(36px, 5vw, 72px); scroll-snap-type: x mandatory; scroll-padding-inline: max(5vw, calc(50vw - var(--sense-size) / 2)); overscroll-behavior-inline: contain; scrollbar-width: none; cursor: grab; touch-action: pan-x pan-y; }
+    .senses-track::-webkit-scrollbar { display: none; }
+    .senses-track.is-dragging { cursor: grabbing; scroll-snap-type: none; user-select: none; }
+    .sense-orbit-card { flex: 0 0 var(--sense-size); margin: 0; scroll-snap-align: center; color: var(--navy); text-align: center; opacity: .48; transform: scale(.82); transform-origin: center; transition: opacity .55s ease, transform .7s var(--ease); }
+    .sense-orbit-card.is-active { z-index: 2; opacity: 1; transform: scale(1.08); }
+    .sense-orbit-image { position: relative; width: 100%; aspect-ratio: 1; overflow: hidden; border-radius: 50%; background: #d8d2c8; box-shadow: inset 0 0 0 1px rgba(23,48,70,.12); }
+    .sense-orbit-image img { display: block; width: 100%; height: 100%; object-fit: cover; filter: saturate(.72) contrast(.94); transform: scale(1.03); transition: filter .6s ease, transform .8s var(--ease); }
+    .sense-orbit-card.is-active .sense-orbit-image img { filter: none; transform: scale(1); }
+    .sense-orbit-card figcaption { display: grid; grid-template-columns: auto auto; justify-content: center; align-items: baseline; gap: 12px; padding-top: 20px; }
+    .sense-orbit-card small { color: var(--terracotta); font: 500 15px/1 var(--mono); letter-spacing: .05em; }
+    .sense-orbit-card span { font: 400 clamp(32px, 3.4vw, 52px)/.95 var(--serif); letter-spacing: -.035em; }
 
     .approach { background: var(--ivory); }
     .approach-intro { display: grid; grid-template-columns: 35% 1fr; gap: 7vw; align-items: end; margin-bottom: clamp(70px, 8vw, 130px); }
@@ -167,7 +172,6 @@
       .nav-left { left: 6vw; }.nav-right { right: 6vw; }.nav-group { font-size: 14px; gap: 24px; }
       .hero-copy { grid-template-columns: minmax(0, 1fr) 34%; }.hero-support { grid-column: 2; }
       .philosophy-grid { grid-template-columns: 50% 1fr; gap: 5vw; }.philosophy-media { min-height: 620px; }
-      .senses-desktop { grid-template-columns: 42% 1fr; gap: 5vw; }.sense-stage { min-height: 580px; }
       .process { grid-template-columns: repeat(2, 1fr); }.process-item:nth-child(2) { border-right: 0; }.process-item:nth-child(n+3) { border-top: 1px solid var(--line); }
       .case, .case:nth-of-type(even) { grid-template-columns: 55% 1fr; gap: 5vw; }.case-media { min-height: 480px; }
     }
@@ -182,7 +186,7 @@
       .mobile-nav a { padding: 20px 0; border-bottom: 1px solid rgba(247,245,240,.25); font: 400 42px/1 var(--serif); text-decoration: none; }
       .eyebrow { font-size: 17px; letter-spacing: .04em; }.hero-copy { display: block; padding: 72px 6vw 92px; }.hero-copy h1 { margin: 24px 0 34px; font-size: clamp(64px, 20vw, 78px); line-height: .86; }.hero-support { font-size: 14px; }.hero-service-line { font-size: 9px; }.hero .text-link { font-size: 17px; }
       .philosophy-grid { display: block; }.philosophy-media { min-height: 540px; margin-bottom: 72px; }.philosophy-media figure:first-child { inset: 0 12% 14% 0; }.philosophy-media figure:last-child { width: 48%; height: 42%; border-width: 8px; }.philosophy-copy .cn-lead { font-size: 17px; }
-      .senses-heading { display: block; }.senses-heading .eyebrow { margin-bottom: 26px; }.senses-desktop { display: none; }.senses-mobile { display: grid; gap: 58px; }.sense-mobile-item { margin: 0; }.sense-mobile-item img { display: block; width: 100%; aspect-ratio: 4/5; object-fit: cover; }.sense-mobile-item figcaption { display: grid; grid-template-columns: 42px 1fr; gap: 8px; align-items: baseline; padding-top: 18px; color: var(--navy); }.sense-mobile-item small { color: var(--terracotta); font: 500 15px/1 var(--mono); }.sense-mobile-item span { font: 400 38px/1 var(--serif); }
+      .senses-heading { display: block; margin-bottom: 36px; }.senses-heading .eyebrow { margin-bottom: 26px; }.senses-carousel { --sense-size: min(68vw, 280px); margin-inline: -6vw; }.senses-controls { padding: 0 6vw 10px; }.sense-arrow { width: 42px; height: 42px; }.senses-track { gap: 16px; padding-block: 24px 42px; padding-inline: calc(50vw - var(--sense-size) / 2); scroll-padding-inline: calc(50vw - var(--sense-size) / 2); }.sense-orbit-card { transform: scale(.84); }.sense-orbit-card.is-active { transform: scale(1.04); }.sense-orbit-card span { font-size: 36px; }
       .process-item small,.service-row small,.case-meta { font-size: 15px; }
       .approach-intro { display: block; margin-bottom: 62px; }.approach-intro .copy { margin-top: 34px; font-size: 15px; }.approach-images { grid-template-columns: 1fr; gap: 10px; }.approach-images figure:first-child { aspect-ratio: 4/5; }.approach-images figure:last-child { aspect-ratio: 4/3; }.process { grid-template-columns: 1fr; }.process-item, .process-item + .process-item { padding: 26px 0; border-right: 0; border-top: 1px solid var(--line); }.process-item:first-child { border-top: 0; }
       .home-services { min-height: 0; }.services-inner { padding: 92px 6vw; }.service-preview { display: none; }.services-title { margin-bottom: 48px; }.service-row { grid-template-columns: 40px 1fr; gap: 6px; }.service-row strong { font-size: 44px; }.service-row span { grid-column: 2; margin-top: 8px; }
@@ -231,28 +235,18 @@
 
     <section class="five-senses section-shell" aria-labelledby="senses-title">
       <div class="senses-heading reveal"><p class="eyebrow">SIGNATURE PERSPECTIVE</p><h2 class="display" id="senses-title">The five senses<br>of branding.</h2></div>
-      <div class="senses-desktop">
-        <div class="sense-list" role="tablist" aria-label="Five senses of branding">
-          <button class="sense-button" type="button" role="tab" aria-selected="true" data-sense="serenity"><small>01</small><span>Serenity</span></button>
-          <button class="sense-button" type="button" role="tab" aria-selected="false" data-sense="authenticity"><small>02</small><span>Authenticity</span></button>
-          <button class="sense-button" type="button" role="tab" aria-selected="false" data-sense="presence"><small>03</small><span>Presence</span></button>
-          <button class="sense-button" type="button" role="tab" aria-selected="false" data-sense="connection"><small>04</small><span>Connection</span></button>
-          <button class="sense-button" type="button" role="tab" aria-selected="false" data-sense="atmosphere"><small>05</small><span>Atmosphere</span></button>
+      <div class="senses-carousel reveal">
+        <div class="senses-controls" aria-label="Five senses carousel controls">
+          <button class="sense-arrow sense-arrow--prev" type="button" aria-label="Previous sense">←</button>
+          <button class="sense-arrow sense-arrow--next" type="button" aria-label="Next sense">→</button>
         </div>
-        <div class="sense-stage image-reveal" aria-live="polite">
-          <img class="sense-image is-active" data-sense-image="serenity" src="assets/home/five-senses/serenity.png" alt="陽光下閉眼感受片刻寧靜的人物" loading="lazy">
-          <img class="sense-image" data-sense-image="authenticity" src="assets/home/five-senses/authenticity.png" alt="手輕觸自然植物的真實觸感" loading="lazy">
-          <img class="sense-image" data-sense-image="presence" src="assets/home/five-senses/presence.png" alt="沙漏象徵專注當下與品牌存在感" loading="lazy">
-          <img class="sense-image" data-sense-image="connection" src="assets/home/five-senses/connection.png" alt="彼此靠近的手象徵人與人的連結" loading="lazy">
-          <img class="sense-image" data-sense-image="atmosphere" src="assets/home/five-senses/atmosphere.png" alt="柔和光影形成細膩的空間氛圍" loading="lazy">
+        <div class="senses-track" role="region" aria-label="Five senses of branding carousel" tabindex="0">
+          <figure class="sense-orbit-card is-active" data-sense-card="serenity"><div class="sense-orbit-image"><img src="assets/home/five-senses/serenity.png" alt="陽光下閉眼感受片刻寧靜的人物" loading="lazy"></div><figcaption><small>01</small><span>Serenity</span></figcaption></figure>
+          <figure class="sense-orbit-card" data-sense-card="authenticity"><div class="sense-orbit-image"><img src="assets/home/five-senses/authenticity.png" alt="手輕觸自然植物的真實觸感" loading="lazy"></div><figcaption><small>02</small><span>Authenticity</span></figcaption></figure>
+          <figure class="sense-orbit-card" data-sense-card="presence"><div class="sense-orbit-image"><img src="assets/home/five-senses/presence.png" alt="沙漏象徵專注當下與品牌存在感" loading="lazy"></div><figcaption><small>03</small><span>Presence</span></figcaption></figure>
+          <figure class="sense-orbit-card" data-sense-card="connection"><div class="sense-orbit-image"><img src="assets/home/five-senses/connection.png" alt="彼此靠近的手象徵人與人的連結" loading="lazy"></div><figcaption><small>04</small><span>Connection</span></figcaption></figure>
+          <figure class="sense-orbit-card" data-sense-card="atmosphere"><div class="sense-orbit-image"><img src="assets/home/five-senses/atmosphere.png" alt="柔和光影形成細膩的空間氛圍" loading="lazy"></div><figcaption><small>05</small><span>Atmosphere</span></figcaption></figure>
         </div>
-      </div>
-      <div class="senses-mobile">
-        <figure class="sense-mobile-item reveal"><img src="assets/home/five-senses/serenity.png" alt="陽光下閉眼感受片刻寧靜的人物" loading="lazy"><figcaption><small>01</small><span>Serenity</span></figcaption></figure>
-        <figure class="sense-mobile-item reveal"><img src="assets/home/five-senses/authenticity.png" alt="手輕觸自然植物的真實觸感" loading="lazy"><figcaption><small>02</small><span>Authenticity</span></figcaption></figure>
-        <figure class="sense-mobile-item reveal"><img src="assets/home/five-senses/presence.png" alt="沙漏象徵專注當下與品牌存在感" loading="lazy"><figcaption><small>03</small><span>Presence</span></figcaption></figure>
-        <figure class="sense-mobile-item reveal"><img src="assets/home/five-senses/connection.png" alt="彼此靠近的手象徵人與人的連結" loading="lazy"><figcaption><small>04</small><span>Connection</span></figcaption></figure>
-        <figure class="sense-mobile-item reveal"><img src="assets/home/five-senses/atmosphere.png" alt="柔和光影形成細膩的空間氛圍" loading="lazy"><figcaption><small>05</small><span>Atmosphere</span></figcaption></figure>
       </div>
     </section>
 
@@ -304,15 +298,79 @@
     }, { threshold: 0.12, rootMargin: '0px 0px -5% 0px' });
     document.querySelectorAll('.reveal, .image-reveal').forEach((element) => revealObserver.observe(element));
 
-    const activateSense = (name) => {
-      document.querySelectorAll('.sense-button').forEach((button) => button.setAttribute('aria-selected', String(button.dataset.sense === name)));
-      document.querySelectorAll('.sense-image').forEach((image) => image.classList.toggle('is-active', image.dataset.senseImage === name));
+    const sensesTrack = document.querySelector('.senses-track');
+    const senseCards = [...document.querySelectorAll('.sense-orbit-card')];
+    const senseMotionReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let activeSenseIndex = 0;
+    let senseScrollFrame = 0;
+    const setActiveSense = (index) => {
+      activeSenseIndex = Math.max(0, Math.min(senseCards.length - 1, index));
+      senseCards.forEach((card, cardIndex) => card.classList.toggle('is-active', cardIndex === activeSenseIndex));
     };
-    document.querySelectorAll('.sense-button').forEach((button) => {
-      button.addEventListener('mouseenter', () => activateSense(button.dataset.sense));
-      button.addEventListener('focus', () => activateSense(button.dataset.sense));
-      button.addEventListener('click', () => activateSense(button.dataset.sense));
+    const updateActiveSense = () => {
+      const trackCenter = sensesTrack.scrollLeft + sensesTrack.clientWidth / 2;
+      let closestIndex = 0;
+      let closestDistance = Infinity;
+      senseCards.forEach((card, index) => {
+        const distance = Math.abs(card.offsetLeft + card.offsetWidth / 2 - trackCenter);
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          closestIndex = index;
+        }
+      });
+      setActiveSense(closestIndex);
+      senseScrollFrame = 0;
+    };
+    const scrollToSense = (index) => {
+      const nextIndex = Math.max(0, Math.min(senseCards.length - 1, index));
+      senseCards[nextIndex].scrollIntoView({ behavior: senseMotionReduced ? 'auto' : 'smooth', block: 'nearest', inline: 'center' });
+      setActiveSense(nextIndex);
+    };
+    sensesTrack.addEventListener('scroll', () => {
+      if (!senseScrollFrame) senseScrollFrame = requestAnimationFrame(updateActiveSense);
+    }, { passive: true });
+    sensesTrack.addEventListener('wheel', (event) => {
+      if (Math.abs(event.deltaY) <= Math.abs(event.deltaX)) return;
+      const maxScroll = sensesTrack.scrollWidth - sensesTrack.clientWidth;
+      const canScroll = event.deltaY > 0 ? sensesTrack.scrollLeft < maxScroll - 1 : sensesTrack.scrollLeft > 1;
+      if (canScroll) {
+        event.preventDefault();
+        sensesTrack.scrollLeft += event.deltaY;
+      }
+    }, { passive: false });
+    let senseDragging = false;
+    let senseDragStart = 0;
+    let senseScrollStart = 0;
+    sensesTrack.addEventListener('pointerdown', (event) => {
+      if (event.pointerType !== 'mouse') return;
+      senseDragging = true;
+      senseDragStart = event.clientX;
+      senseScrollStart = sensesTrack.scrollLeft;
+      sensesTrack.classList.add('is-dragging');
+      sensesTrack.setPointerCapture(event.pointerId);
     });
+    sensesTrack.addEventListener('pointermove', (event) => {
+      if (senseDragging) sensesTrack.scrollLeft = senseScrollStart - (event.clientX - senseDragStart);
+    });
+    const finishSenseDrag = () => {
+      if (!senseDragging) return;
+      senseDragging = false;
+      sensesTrack.classList.remove('is-dragging');
+      updateActiveSense();
+      scrollToSense(activeSenseIndex);
+    };
+    sensesTrack.addEventListener('pointerup', finishSenseDrag);
+    sensesTrack.addEventListener('pointercancel', finishSenseDrag);
+    document.querySelector('.sense-arrow--prev').addEventListener('click', () => scrollToSense(activeSenseIndex - 1));
+    document.querySelector('.sense-arrow--next').addEventListener('click', () => scrollToSense(activeSenseIndex + 1));
+    sensesTrack.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+        event.preventDefault();
+        scrollToSense(activeSenseIndex + (event.key === 'ArrowRight' ? 1 : -1));
+      }
+    });
+    window.addEventListener('resize', updateActiveSense);
+    updateActiveSense();
 
     const activateService = (name) => document.querySelectorAll('[data-service-image]').forEach((image) => image.classList.toggle('is-active', image.dataset.serviceImage === name));
     document.querySelectorAll('.service-row').forEach((row) => {
