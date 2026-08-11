@@ -51,13 +51,13 @@
     }
 
     .about-copy {
-      position: relative;
+      position: absolute;
       z-index: 1;
-      width: min(760px, 52vw);
-      margin: 0 auto;
-      padding-top: clamp(64px, 7vh, 96px);
-      padding-bottom: 300px;
-      transform: translateX(clamp(120px, 15vw, 310px));
+      top: 84px;
+      left: 40%;
+      width: min(700px, 55vw);
+      margin: 0;
+      padding: 0;
     }
 
     .about-copy h1 {
@@ -219,10 +219,12 @@
       }
 
       .about-copy {
+        position: relative;
+        top: auto;
+        left: auto;
         width: auto;
         margin: 0;
         padding: 72px 7vw 360px;
-        transform: none;
       }
 
       .about-copy h1 {
