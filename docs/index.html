@@ -55,9 +55,9 @@
     .mobile-nav { display: none; }
 
     .hero { position: relative; z-index: 2; background: var(--ink-navy); color: var(--ivory); }
-    .hero-media { display: grid; place-items: center; min-height: clamp(620px, 68vh, 820px); margin: 0; padding: 0; overflow: hidden; background: var(--ivory); }
-    .hero-artwork { position: relative; width: 100%; line-height: 0; }
-    .hero-artwork__video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: contain; background: var(--ivory); }
+    .hero-media { display: block; min-height: 0; margin: 0; padding: 0; overflow: hidden; background: var(--ivory); }
+    .hero-artwork { position: relative; width: 100%; aspect-ratio: 1.94 / 1; overflow: hidden; line-height: 0; }
+    .hero-artwork__video { position: absolute; top: 50%; left: 0; display: block; width: 100%; height: auto; transform: translateY(-50%); background: var(--ivory); }
     .hero-copy { position: relative; z-index: 5; display: grid; grid-template-columns: minmax(0, 1fr) 30%; gap: 22px 7vw; align-items: end; margin: 0; padding: clamp(72px, 7.5vw, 126px) 5vw clamp(88px, 9vw, 150px); background: var(--ink-navy); }
     .hero-eyebrow { grid-column: 1; grid-row: 1; }
     .hero-copy h1 { grid-column: 1; grid-row: 2; }
