@@ -36,7 +36,6 @@
     * { box-sizing: border-box; }
     html { overflow-x: clip; scroll-behavior: smooth; }
     body { margin: 0; overflow-x: hidden; background: var(--ivory); color: var(--navy); font: 400 15px/1.8 var(--sans); }
-    body.menu-open { overflow: hidden; }
     img { max-width: 100%; }
     a { color: inherit; }
     button { font: inherit; }
@@ -205,10 +204,16 @@
       .hero-media { min-height: 0; padding: 0; }
       .section-shell { padding: 92px 6vw; }.display { font-size: clamp(42px, 12vw, 54px); line-height: .96; }
       .top { height: 68px; }.nav-logo { width: 150px; height: 49px; }.nav-group { display: none; }
-      .menu-toggle { position: absolute; top: 22px; right: 6vw; display: block; padding: 0; border: 0; background: transparent; color: var(--ivory); font: 500 11px/1 var(--mono); letter-spacing: .08em; }
-      .mobile-nav { position: fixed; z-index: 19; inset: 68px 0 0; display: grid; align-content: center; gap: 0; padding: 8vw; background: var(--ink-navy); color: var(--ivory); opacity: 0; visibility: hidden; transform: translateY(-10px); transition: opacity .4s ease, transform .5s var(--ease), visibility .4s; }
+      .menu-toggle { position: absolute; top: 50%; right: 6vw; display: block; width: 38px; height: 38px; padding: 0; border: 0; background: transparent; color: var(--ivory); transform: translateY(-50%); cursor: pointer; -webkit-tap-highlight-color: transparent; }
+      .menu-toggle::before, .menu-toggle::after { content: ''; position: absolute; left: 8px; width: 22px; height: 1.5px; background: currentColor; transition: top .3s var(--ease), transform .3s var(--ease), box-shadow .3s var(--ease); }
+      .menu-toggle::before { top: 12px; box-shadow: 0 6px 0 currentColor; }
+      .menu-toggle::after { top: 24px; }
+      .menu-toggle[aria-expanded="true"]::before { top: 18px; box-shadow: none; transform: rotate(45deg); }
+      .menu-toggle[aria-expanded="true"]::after { top: 18px; transform: rotate(-45deg); }
+      .mobile-nav { position: fixed; z-index: 19; top: 68px; right: 4vw; display: flex; width: min(76vw, 310px); flex-direction: column; padding: 10px 20px 14px; border: 1px solid rgba(247,245,240,.16); background: rgba(36,49,59,.98); color: var(--ivory); opacity: 0; visibility: hidden; transform: translateY(-8px) scale(.98); transform-origin: top right; transition: opacity .28s ease, transform .38s var(--ease), visibility .28s; }
       .mobile-nav.is-open { opacity: 1; visibility: visible; transform: none; }
-      .mobile-nav a { padding: 20px 0; border-bottom: 1px solid rgba(247,245,240,.25); font: 400 42px/1 var(--serif); text-decoration: none; }
+      .mobile-nav a { padding: 15px 4px; border-bottom: 1px solid rgba(247,245,240,.2); font: 400 17px/1.25 var(--sans); letter-spacing: .035em; text-decoration: none; }
+      .mobile-nav a:last-child { border-bottom: 0; }
       .eyebrow { font-size: 17px; letter-spacing: .04em; }.hero-copy { display: block; padding: 72px 6vw 92px; }.hero-copy h1 { max-width: 100%; margin: 24px 0 34px; font-size: clamp(48px, 13.5vw, 56px); line-height: .92; }.hero-support { font-size: 14px; }.hero-service-line { font-size: 9px; }.hero .text-link { font-size: 17px; }
       .philosophy-grid { display: block; }.philosophy-media { min-height: 540px; margin-bottom: 72px; }.philosophy-media figure:first-child { inset: 0 12% 14% 0; }.philosophy-media figure:last-child { width: 48%; height: 42%; border-width: 8px; }.philosophy-copy .cn-lead { font-size: 17px; }
       .senses-heading { display: block; margin-bottom: 36px; }.senses-heading .eyebrow { margin-bottom: 26px; }.senses-heading .display { max-width: 100%; font-size: clamp(42px, 11.8vw, 50px); line-height: .98; letter-spacing: -.045em; }.senses-heading > div > p { margin-top: 22px; font-size: 14px; }.senses-carousel { --sense-size: min(72vw, 286px); margin-inline: -6vw; }.senses-controls { padding: 0 6vw 10px; }.sense-arrow { width: 42px; height: 42px; }.senses-track { gap: 16px; padding-block: 20px 42px; padding-inline: calc(50vw - var(--sense-size) / 2); scroll-padding-inline: calc(50vw - var(--sense-size) / 2); }.sense-orbit-card { transform: scale(.9); }.sense-orbit-card.is-active { transform: scale(1.02); }.sense-card-heading { min-height: 72px; padding: 10px 13px 11px; }.sense-name-cn { font-size: 18px; }.sense-name-en { font-size: 20px; }.sense-card-copy { min-height: 84px; padding: 14px 8px 0; }.sense-card-copy p { font-size: 14px; }
@@ -234,7 +239,7 @@
     <div class="nav-group nav-left"><a href="work/">WORK</a><a href="services/">SERVICES</a></div>
     <a class="nav-logo" href="./" aria-label="FUN PROJECT 首頁"><img src="assets/logo-nav.png" alt="FUN PROJECT"></a>
     <div class="nav-group nav-right"><a href="about/">ABOUT</a><a href="contact/">START A PROJECT ↗</a></div>
-    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-navigation">MENU</button>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-navigation" aria-label="開啟選單"></button>
   </nav>
   <div class="mobile-nav" id="mobile-navigation" aria-hidden="true"><a href="work/">WORK</a><a href="services/">SERVICES</a><a href="about/">ABOUT</a><a href="contact/">START A PROJECT ↗</a></div>
 
@@ -472,13 +477,16 @@
     const mobileNav = document.querySelector('.mobile-nav');
     const setMenu = (open) => {
       menuButton.setAttribute('aria-expanded', String(open));
-      menuButton.textContent = open ? 'CLOSE' : 'MENU';
+      menuButton.setAttribute('aria-label', open ? '關閉選單' : '開啟選單');
       mobileNav.classList.toggle('is-open', open);
       mobileNav.setAttribute('aria-hidden', String(!open));
-      document.body.classList.toggle('menu-open', open);
     };
     menuButton.addEventListener('click', () => setMenu(menuButton.getAttribute('aria-expanded') !== 'true'));
     mobileNav.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => setMenu(false)));
+    document.addEventListener('click', (event) => {
+      if (menuButton.getAttribute('aria-expanded') === 'true' && !mobileNav.contains(event.target) && !menuButton.contains(event.target)) setMenu(false);
+    });
+    window.addEventListener('keydown', (event) => { if (event.key === 'Escape') setMenu(false); });
   </script>
 </body>
 </html>
