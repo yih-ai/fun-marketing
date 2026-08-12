@@ -165,6 +165,39 @@
       -webkit-mask-image: radial-gradient(ellipse 100% 100% at center, #000 88%, transparent 100%);
       mask-image: radial-gradient(ellipse 100% 100% at center, #000 88%, transparent 100%);
       pointer-events: none;
+      opacity: .36;
+      filter: grayscale(1) contrast(.86);
+      transition: opacity .42s ease, filter .42s ease;
+    }
+
+    .about-collective__art::before {
+      content: '';
+      position: absolute;
+      z-index: 1;
+      inset: 0;
+      background: url('../assets/about-team-illustration.jpg') center / 100% 100% no-repeat;
+      mix-blend-mode: darken;
+      opacity: 1;
+      transform: scale(1.045);
+      transition: opacity .38s ease, transform .48s cubic-bezier(.22, 1, .36, 1), clip-path .38s ease;
+      pointer-events: none;
+      -webkit-mask-image: radial-gradient(ellipse 100% 100% at center, #000 88%, transparent 100%);
+      mask-image: radial-gradient(ellipse 100% 100% at center, #000 88%, transparent 100%);
+    }
+
+    .about-collective__art[data-active-member='anya']::before {
+      clip-path: polygon(0 24%, 42% 18%, 55% 47%, 57% 85%, 38% 100%, 0 100%);
+      transform-origin: 26% 61%;
+    }
+
+    .about-collective__art[data-active-member='bear']::before {
+      clip-path: polygon(27% 0, 73% 0, 82% 18%, 77% 57%, 61% 68%, 34% 56%, 20% 28%);
+      transform-origin: 53% 29%;
+    }
+
+    .about-collective__art[data-active-member='may']::before {
+      clip-path: polygon(52% 35%, 91% 36%, 100% 58%, 100% 100%, 49% 100%, 39% 73%);
+      transform-origin: 72% 68%;
     }
 
     .team-hotspot {
@@ -209,9 +242,7 @@
     }
 
     @media (hover: hover) and (pointer: fine) {
-      .about-collective__art:has(.team-hotspot:hover) img {
-        filter: contrast(1.015);
-      }
+      .team-hotspot:hover { background: rgba(255,255,255,.025); }
     }
 
     .motion-ready .about-collective__art {
@@ -383,6 +414,8 @@
       .motion-ready .about-collective__art,
       .motion-ready .team-member { opacity: 1; transform: none; transition: none; }
       .team-profile__inner { transition: none; }
+      .about-collective__art img,
+      .about-collective__art::before { transition: none; }
     }
   </style>
 </head>
@@ -435,7 +468,7 @@
             All our specialists are regularly trained and improve their skills for the best result for you.
           </p>
         </div>
-        <figure class="about-collective__art">
+        <figure class="about-collective__art" data-active-member="anya">
           <img src="../assets/about-team-illustration.jpg" width="1254" height="1254" alt="Hand-drawn illustration of the FUN PROJECT creative team collaborating across strategy, content and production">
           <button class="team-hotspot team-hotspot--anya" type="button" data-team-member="anya" aria-label="Show Anya Ho profile" aria-controls="team-profile" aria-pressed="true"></button>
           <button class="team-hotspot team-hotspot--bear" type="button" data-team-member="bear" aria-label="Show Bear profile" aria-controls="team-profile" aria-pressed="false"></button>
@@ -483,6 +516,7 @@
     };
     const teamHotspots = [...document.querySelectorAll('.team-hotspot')];
     const teamProfileInner = document.querySelector('.team-profile__inner');
+    const teamIllustration = document.querySelector('.about-collective__art');
     const teamPhoto = teamProfileInner.querySelector('.team-photo');
     const teamName = teamProfileInner.querySelector('h3');
     const teamRole = teamProfileInner.querySelector('p');
@@ -492,6 +526,8 @@
 
     const renderTeamProfile = (member) => {
       if (!teamProfiles[member] || member === activeTeamMember) return;
+      teamIllustration.dataset.activeMember = member;
+      teamHotspots.forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.teamMember === member)));
       const updateProfile = () => {
         const profile = teamProfiles[member];
         teamPhoto.className = `team-photo ${profile.photoClass}`;
@@ -499,7 +535,6 @@
         teamName.textContent = profile.name;
         teamRole.textContent = profile.role;
         activeTeamMember = member;
-        teamHotspots.forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.teamMember === member)));
         teamProfileInner.classList.remove('is-changing');
       };
 
