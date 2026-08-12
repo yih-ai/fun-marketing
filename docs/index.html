@@ -101,6 +101,7 @@
     .sense-orbit-card { flex: 0 0 var(--sense-size); margin: 0; scroll-snap-align: center; color: var(--navy); opacity: .68; transform: scale(.92); transform-origin: center; transition: opacity .55s ease, transform .7s var(--ease); }
     .sense-orbit-card.is-active { z-index: 2; opacity: 1; transform: scale(1.035); }
     @media (hover: hover) and (pointer: fine) {
+      .senses-track { cursor: ew-resize; }
       .senses-track:has(.sense-orbit-card:hover) .sense-orbit-card.is-active:not(:hover) { z-index: 1; opacity: .68; transform: scale(.92); }
       .sense-orbit-card:hover { z-index: 3; opacity: 1; transform: scale(1.035); }
     }
@@ -327,9 +328,10 @@
       setActiveSense(closestIndex);
       senseScrollFrame = 0;
     };
-    const scrollToSense = (index) => {
+    const scrollToSense = (index, behavior = senseMotionReduced ? 'auto' : 'smooth') => {
       const nextIndex = Math.max(0, Math.min(senseCards.length - 1, index));
-      senseCards[nextIndex].scrollIntoView({ behavior: senseMotionReduced ? 'auto' : 'smooth', block: 'nearest', inline: 'center' });
+      const targetLeft = senseCards[nextIndex].offsetLeft + senseCards[nextIndex].offsetWidth / 2 - sensesTrack.clientWidth / 2;
+      sensesTrack.scrollTo({ left: targetLeft, behavior });
       setActiveSense(nextIndex);
     };
     sensesTrack.addEventListener('scroll', () => {
@@ -347,6 +349,11 @@
     let senseDragging = false;
     let senseDragStart = 0;
     let senseScrollStart = 0;
+    let senseMouseX = null;
+    const senseHoverEnabled = window.matchMedia('(hover: hover) and (pointer: fine)');
+    sensesTrack.addEventListener('pointerenter', (event) => {
+      if (senseHoverEnabled.matches && event.pointerType === 'mouse') senseMouseX = event.clientX;
+    });
     sensesTrack.addEventListener('pointerdown', (event) => {
       if (event.pointerType !== 'mouse') return;
       event.preventDefault();
@@ -357,7 +364,18 @@
       sensesTrack.setPointerCapture(event.pointerId);
     });
     sensesTrack.addEventListener('pointermove', (event) => {
-      if (senseDragging) sensesTrack.scrollLeft = senseScrollStart - (event.clientX - senseDragStart);
+      if (event.pointerType !== 'mouse') return;
+      if (senseDragging) {
+        sensesTrack.scrollLeft = senseScrollStart - (event.clientX - senseDragStart);
+        senseMouseX = event.clientX;
+        return;
+      }
+      if (!senseHoverEnabled.matches || senseMouseX === null) return;
+      const mouseDelta = event.clientX - senseMouseX;
+      if (Math.abs(mouseDelta) >= .5) {
+        sensesTrack.scrollLeft -= mouseDelta * 1.15;
+        senseMouseX = event.clientX;
+      }
     });
     const finishSenseDrag = () => {
       if (!senseDragging) return;
@@ -368,8 +386,11 @@
     };
     sensesTrack.addEventListener('pointerup', finishSenseDrag);
     sensesTrack.addEventListener('pointercancel', finishSenseDrag);
+    sensesTrack.addEventListener('pointerleave', () => {
+      senseMouseX = null;
+      if (!senseDragging) updateActiveSense();
+    });
     sensesTrack.addEventListener('dragstart', (event) => event.preventDefault());
-    const senseHoverEnabled = window.matchMedia('(hover: hover) and (pointer: fine)');
     senseCards.forEach((card, index) => {
       card.addEventListener('pointerenter', () => {
         if (senseHoverEnabled.matches && !senseDragging) setActiveSense(index);
@@ -387,7 +408,9 @@
       }
     });
     window.addEventListener('resize', updateActiveSense);
-    updateActiveSense();
+    const centerInitialSense = () => scrollToSense(Math.floor(senseCards.length / 2), 'auto');
+    if (document.readyState === 'complete') requestAnimationFrame(centerInitialSense);
+    else window.addEventListener('load', () => requestAnimationFrame(centerInitialSense), { once: true });
 
     const activateService = (name) => document.querySelectorAll('[data-service-image]').forEach((image) => image.classList.toggle('is-active', image.dataset.serviceImage === name));
     document.querySelectorAll('.service-row').forEach((row) => {
