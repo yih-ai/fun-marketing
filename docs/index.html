@@ -95,7 +95,7 @@
     .sense-arrow { display: grid; width: 48px; height: 48px; place-items: center; border: 1px solid rgba(23,48,70,.32); border-radius: 50%; background: transparent; color: var(--navy); font: 400 22px/1 var(--sans); cursor: pointer; transition: color .35s ease, background .35s ease, transform .35s var(--ease); }
     .sense-arrow:hover { background: var(--navy); color: var(--ivory); transform: scale(1.06); }
     .sense-arrow:focus-visible { outline: 2px solid var(--terracotta); outline-offset: 3px; }
-    .senses-track { display: flex; gap: clamp(16px, 1.7vw, 28px); overflow-x: auto; padding: clamp(18px, 2.5vw, 38px) max(5vw, calc(50vw - var(--sense-size) / 2)) clamp(36px, 5vw, 72px); scroll-snap-type: x mandatory; scroll-padding-inline: max(5vw, calc(50vw - var(--sense-size) / 2)); overscroll-behavior-inline: contain; scrollbar-width: none; cursor: grab; touch-action: pan-x pan-y; }
+    .senses-track { display: flex; gap: clamp(16px, 1.7vw, 28px); overflow-x: auto; padding: clamp(18px, 2.5vw, 38px) max(5vw, calc(50vw - var(--sense-size) / 2)) clamp(36px, 5vw, 72px); scroll-snap-type: x mandatory; scroll-padding-inline: max(5vw, calc(50vw - var(--sense-size) / 2)); overscroll-behavior-inline: contain; scrollbar-width: none; cursor: grab; touch-action: pan-x pan-y; user-select: none; }
     .senses-track::-webkit-scrollbar { display: none; }
     .senses-track.is-dragging { cursor: grabbing; scroll-snap-type: none; user-select: none; }
     .sense-orbit-card { flex: 0 0 var(--sense-size); margin: 0; scroll-snap-align: center; color: var(--navy); opacity: .68; transform: scale(.92); transform-origin: center; transition: opacity .55s ease, transform .7s var(--ease); }
@@ -104,7 +104,7 @@
     .sense-name-cn { color: #a98774; font: 400 clamp(18px, 1.45vw, 22px)/1.2 var(--sans); letter-spacing: .04em; }
     .sense-name-en { margin-top: 3px; color: #6f7b82; font: 400 clamp(18px, 1.5vw, 23px)/1.1 var(--serif); letter-spacing: -.015em; }
     .sense-orbit-image { position: relative; width: 100%; aspect-ratio: 4 / 3; overflow: hidden; background: #d8d2c8; box-shadow: inset 0 0 0 1px rgba(23,48,70,.12); }
-    .sense-orbit-image img { display: block; width: 100%; height: 100%; object-fit: cover; filter: saturate(.72) contrast(.94); transform: scale(1.03); transition: filter .6s ease, transform .8s var(--ease); }
+    .sense-orbit-image img { display: block; width: 100%; height: 100%; object-fit: cover; pointer-events: none; -webkit-user-drag: none; user-select: none; filter: saturate(.72) contrast(.94); transform: scale(1.03); transition: filter .6s ease, transform .8s var(--ease); }
     .sense-orbit-card.is-active .sense-orbit-image img { filter: none; transform: scale(1); }
     .sense-orbit-card figcaption { min-height: 76px; padding: 17px 10px 0; color: var(--body); }
     .sense-orbit-card figcaption p { margin: 0; font-size: clamp(14px, 1.05vw, 16px); line-height: 1.55; }
@@ -345,6 +345,7 @@
     let senseScrollStart = 0;
     sensesTrack.addEventListener('pointerdown', (event) => {
       if (event.pointerType !== 'mouse') return;
+      event.preventDefault();
       senseDragging = true;
       senseDragStart = event.clientX;
       senseScrollStart = sensesTrack.scrollLeft;
@@ -363,6 +364,7 @@
     };
     sensesTrack.addEventListener('pointerup', finishSenseDrag);
     sensesTrack.addEventListener('pointercancel', finishSenseDrag);
+    sensesTrack.addEventListener('dragstart', (event) => event.preventDefault());
     document.querySelector('.sense-arrow--prev').addEventListener('click', () => scrollToSense(activeSenseIndex - 1));
     document.querySelector('.sense-arrow--next').addEventListener('click', () => scrollToSense(activeSenseIndex + 1));
     sensesTrack.addEventListener('keydown', (event) => {
