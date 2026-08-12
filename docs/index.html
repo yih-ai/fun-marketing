@@ -32,6 +32,12 @@
     button { font: inherit; }
     .eyebrow { margin: 0; color: var(--terracotta); font: 500 24px/1.2 var(--mono); letter-spacing: .04em; text-transform: uppercase; }
     .display { margin: 0; font: 400 clamp(64px, 7vw, 112px)/.9 var(--serif); letter-spacing: -.052em; }
+    @media (min-width: 768px) {
+      .philosophy .display,
+      .five-senses .display,
+      .approach .display,
+      .selected-work .display { font-size: clamp(54px, 5.7vw, 88px); line-height: .94; }
+    }
     .text-link { position: relative; display: inline-block; padding-bottom: 7px; font: 500 12px/1.2 var(--mono); letter-spacing: .08em; text-decoration: none; }
     .text-link::after { content: ''; position: absolute; right: 0; bottom: 0; left: 0; height: 1px; background: currentColor; transform-origin: left; transition: transform .55s var(--ease); }
     .text-link:hover::after, .text-link:focus-visible::after { transform: scaleX(.35); }
