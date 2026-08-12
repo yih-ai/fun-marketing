@@ -100,6 +100,10 @@
     .senses-track.is-dragging { cursor: grabbing; scroll-snap-type: none; user-select: none; }
     .sense-orbit-card { flex: 0 0 var(--sense-size); margin: 0; scroll-snap-align: center; color: var(--navy); opacity: .68; transform: scale(.92); transform-origin: center; transition: opacity .55s ease, transform .7s var(--ease); }
     .sense-orbit-card.is-active { z-index: 2; opacity: 1; transform: scale(1.035); }
+    @media (hover: hover) and (pointer: fine) {
+      .senses-track:has(.sense-orbit-card:hover) .sense-orbit-card.is-active:not(:hover) { z-index: 1; opacity: .68; transform: scale(.92); }
+      .sense-orbit-card:hover { z-index: 3; opacity: 1; transform: scale(1.035); }
+    }
     .sense-card-heading { display: flex; min-height: 82px; flex-direction: column; justify-content: center; margin-bottom: 8px; padding: 12px 16px 13px; border: 1px solid rgba(23,48,70,.22); background: rgba(247,245,240,.46); }
     .sense-name-cn { color: #a98774; font: 400 clamp(18px, 1.45vw, 22px)/1.2 var(--sans); letter-spacing: .04em; }
     .sense-name-en { margin-top: 3px; color: #6f7b82; font: 400 clamp(18px, 1.5vw, 23px)/1.1 var(--serif); letter-spacing: -.015em; }
@@ -365,6 +369,15 @@
     sensesTrack.addEventListener('pointerup', finishSenseDrag);
     sensesTrack.addEventListener('pointercancel', finishSenseDrag);
     sensesTrack.addEventListener('dragstart', (event) => event.preventDefault());
+    const senseHoverEnabled = window.matchMedia('(hover: hover) and (pointer: fine)');
+    senseCards.forEach((card, index) => {
+      card.addEventListener('pointerenter', () => {
+        if (senseHoverEnabled.matches && !senseDragging) setActiveSense(index);
+      });
+      card.addEventListener('pointerleave', () => {
+        if (senseHoverEnabled.matches && !senseDragging) updateActiveSense();
+      });
+    });
     document.querySelector('.sense-arrow--prev').addEventListener('click', () => scrollToSense(activeSenseIndex - 1));
     document.querySelector('.sense-arrow--next').addEventListener('click', () => scrollToSense(activeSenseIndex + 1));
     sensesTrack.addEventListener('keydown', (event) => {
