@@ -3,8 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Services｜FUN PROJECT</title>
-  <meta name="description" content="FUN PROJECT 提供品牌策略、品牌識別、創意設計、內容製作、社群行銷、公關與品牌體驗服務。">
+  <title>品牌行銷服務｜策略・內容・社群・公關｜FUN PROJECT</title>
+  <meta name="description" content="FUN PROJECT 提供品牌策略、品牌識別、Creative &amp; Design、內容製作、社群行銷、公關活動與品牌體驗等整合行銷服務。">
+  <link rel="canonical" href="https://yih-ai.github.io/fun-marketing/services/">
+  <meta property="og:type" content="website"><meta property="og:title" content="品牌行銷服務｜FUN PROJECT"><meta property="og:description" content="品牌策略、識別、內容、社群、公關活動與品牌體驗服務。"><meta property="og:url" content="https://yih-ai.github.io/fun-marketing/services/"><meta property="og:image" content="https://yih-ai.github.io/fun-marketing/assets/services-hero.png">
+  <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="品牌行銷服務｜FUN PROJECT"><meta name="twitter:description" content="策略、內容、社群與公關品牌服務。"><meta name="twitter:image" content="https://yih-ai.github.io/fun-marketing/assets/services-hero.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&amp;display=swap" rel="stylesheet">
@@ -174,13 +177,16 @@
       transition: opacity .45s ease, transform .5s cubic-bezier(.22, 1, .36, 1);
     }
 
-    .service-item h3 {
+    .service-item h2 {
       max-width: 330px;
       margin: 66px 0 12px;
       font: 400 clamp(40px, 3.4vw, 50px)/.92 var(--serif);
       letter-spacing: -.04em;
       transition: transform .5s cubic-bezier(.22, 1, .36, 1);
     }
+    .service-item h2 a { color: inherit; text-decoration: none; }
+    .service-paths { display: flex; flex-wrap: wrap; gap: 12px; margin: 40px 0 0; }
+    .service-paths a { padding: 10px 13px; border: 1px solid var(--hairline); color: var(--muted); font: 12px/1.4 monospace; text-decoration: none; }
 
     .service-item h4 {
       margin: 0 0 28px;
@@ -240,7 +246,7 @@
     }
 
     @media (hover: hover) and (pointer: fine) {
-      .service-item:hover h3 {
+      .service-item:hover h2 {
         transform: translateX(5px);
       }
 
@@ -321,7 +327,7 @@
         padding: 30px 26px 38px;
       }
 
-      .service-item h3 {
+      .service-item h2 {
         margin-top: 48px;
         font-size: clamp(38px, 12vw, 46px);
       }
@@ -338,7 +344,7 @@
 
       .motion-ready .service-item,
       .service-item,
-      .service-item h3,
+      .service-item h2,
       .service-arrow,
       .text-link::after {
         opacity: 1;
@@ -372,6 +378,7 @@
           <a class="text-link" href="#services">EXPLORE SERVICES ↓</a>
         </div>
       </div>
+      <nav class="service-paths" aria-label="專業服務頁面"><a href="restaurant-marketing/">餐飲品牌行銷</a><a href="brand-strategy/">品牌策略</a><a href="social-marketing/">社群行銷</a><a href="content-production/">內容製作</a><a href="pr-event/">PR &amp; Experience</a><a href="kol-marketing/">KOL Marketing</a></nav>
     </section>
 
     <section class="services-intro" id="services" aria-labelledby="services-intro-title">
@@ -387,7 +394,7 @@
       <div class="services-grid">
         <article class="service-item">
           <div class="service-topline"><span>01</span><span class="service-arrow">→</span></div>
-          <h3>Brand Strategy</h3>
+          <h2><a href="brand-strategy/">Brand Strategy</a></h2>
           <h4>品牌策略</h4>
           <p class="service-description">找到品牌真正值得被記住的位置。</p>
           <ul class="service-keywords">
@@ -400,7 +407,7 @@
 
         <article class="service-item">
           <div class="service-topline"><span>02</span><span class="service-arrow">→</span></div>
-          <h3>Brand Identity</h3>
+          <h2>Brand Identity</h2>
           <h4>品牌識別</h4>
           <p class="service-description">建立一致且具有辨識度的品牌世界。</p>
           <ul class="service-keywords">
@@ -413,7 +420,7 @@
 
         <article class="service-item">
           <div class="service-topline"><span>03</span><span class="service-arrow">→</span></div>
-          <h3>Creative &amp; Design</h3>
+          <h2>Creative &amp; Design</h2>
           <h4>創意設計</h4>
           <p class="service-description">將策略轉化為能被看見與感受到的創意。</p>
           <ul class="service-keywords">
@@ -426,7 +433,7 @@
 
         <article class="service-item">
           <div class="service-topline"><span>04</span><span class="service-arrow">→</span></div>
-          <h3>Content Production</h3>
+          <h2><a href="content-production/">Content Production</a></h2>
           <h4>內容製作</h4>
           <p class="service-description">用影像與內容，說出品牌的故事。</p>
           <ul class="service-keywords">
@@ -439,7 +446,7 @@
 
         <article class="service-item">
           <div class="service-topline"><span>05</span><span class="service-arrow">→</span></div>
-          <h3>Social &amp; Campaign</h3>
+          <h2><a href="social-marketing/">Social &amp; Campaign</a></h2>
           <h4>社群與整合行銷</h4>
           <p class="service-description">讓好的內容真正走進市場。</p>
           <ul class="service-keywords">
@@ -452,7 +459,7 @@
 
         <article class="service-item">
           <div class="service-topline"><span>06</span><span class="service-arrow">→</span></div>
-          <h3>PR &amp; Experience</h3>
+          <h2><a href="pr-event/">PR &amp; Experience</a></h2>
           <h4>公關與品牌體驗</h4>
           <p class="service-description">創造話題，也創造真實的品牌接觸。</p>
           <ul class="service-keywords">

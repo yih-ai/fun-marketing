@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://yih-ai.github.io/fun-marketing/sitemap.xml
