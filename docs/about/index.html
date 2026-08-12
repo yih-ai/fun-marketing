@@ -160,42 +160,40 @@
       width: 100%;
       height: auto;
       aspect-ratio: 1;
-      object-fit: cover;
-      mix-blend-mode: darken;
-      -webkit-mask-image: radial-gradient(ellipse 100% 100% at center, #000 88%, transparent 100%);
-      mask-image: radial-gradient(ellipse 100% 100% at center, #000 88%, transparent 100%);
+      object-fit: contain;
       pointer-events: none;
-      opacity: .28;
-      filter: grayscale(1) contrast(.82);
+    }
+
+    .team-art-base {
+      opacity: .2;
+      filter: grayscale(1) contrast(.84);
       transition: opacity .42s ease, filter .42s ease;
     }
 
-    .about-collective__art::before {
-      content: '';
+    .team-art-member {
       position: absolute;
       z-index: 1;
       inset: 0;
-      background: url('../assets/about-team-illustration.jpg') center / 100% 100% no-repeat;
-      mix-blend-mode: darken;
+      opacity: 0;
+      filter: contrast(1.08);
+      transform: none;
+      transition: opacity .4s ease, transform .46s cubic-bezier(.22, 1, .36, 1), filter .4s ease;
+    }
+
+    .team-art-member--anya { transform-origin: 30% 61%; }
+    .team-art-member--bear { transform-origin: 55% 31%; }
+    .team-art-member--may { transform-origin: 73% 66%; }
+
+    .about-collective__art[data-active-member='anya'] .team-art-member--anya,
+    .about-collective__art[data-active-member='bear'] .team-art-member--bear,
+    .about-collective__art[data-active-member='may'] .team-art-member--may {
       opacity: 1;
       filter: contrast(1.16);
       transform: none;
-      transition: opacity .38s ease, filter .38s ease;
-      pointer-events: none;
-      -webkit-mask-image: radial-gradient(ellipse 100% 100% at center, #000 88%, transparent 100%);
-      mask-image: radial-gradient(ellipse 100% 100% at center, #000 88%, transparent 100%);
     }
 
-    .about-collective__art[data-active-member='anya']::before {
-      clip-path: polygon(8% 35%, 20% 28%, 38% 27%, 49% 36%, 52% 48%, 47% 58%, 56% 72%, 51% 84%, 5% 84%, 4% 64%, 17% 59%);
-    }
-
-    .about-collective__art[data-active-member='bear']::before {
-      clip-path: polygon(43% 5%, 63% 5%, 68% 14%, 76% 18%, 82% 28%, 77% 39%, 69% 55%, 52% 56%, 44% 47%, 36% 37%, 39% 21%);
-    }
-
-    .about-collective__art[data-active-member='may']::before {
-      clip-path: polygon(65% 38%, 82% 40%, 90% 49%, 92% 61%, 97% 68%, 94% 91%, 48% 91%, 46% 79%, 56% 68%, 61% 52%);
+    .about-collective__art:has(.team-hotspot:focus-visible) .team-art-base {
+      opacity: .16;
     }
 
     .team-hotspot {
@@ -467,7 +465,10 @@
           </p>
         </div>
         <figure class="about-collective__art" data-active-member="anya">
-          <img src="../assets/about-team-illustration.jpg" width="1254" height="1254" alt="Hand-drawn illustration of the FUN PROJECT creative team collaborating across strategy, content and production">
+          <img class="team-art-base" src="../assets/about/team/team-all.png" width="1254" height="1254" alt="Hand-drawn illustration of the FUN PROJECT creative team collaborating across strategy, content and production">
+          <img class="team-art-member team-art-member--anya" src="../assets/about/team/team-anya.png" width="1254" height="1254" alt="" aria-hidden="true">
+          <img class="team-art-member team-art-member--bear" src="../assets/about/team/team-bear.png" width="1254" height="1254" alt="" aria-hidden="true">
+          <img class="team-art-member team-art-member--may" src="../assets/about/team/team-may.png" width="1254" height="1254" alt="" aria-hidden="true">
           <button class="team-hotspot team-hotspot--anya" type="button" data-team-member="anya" aria-label="Show Anya Ho profile" aria-controls="team-profile" aria-pressed="true"></button>
           <button class="team-hotspot team-hotspot--bear" type="button" data-team-member="bear" aria-label="Show Bear profile" aria-controls="team-profile" aria-pressed="false"></button>
           <button class="team-hotspot team-hotspot--may" type="button" data-team-member="may" aria-label="Show May Lin profile" aria-controls="team-profile" aria-pressed="false"></button>
